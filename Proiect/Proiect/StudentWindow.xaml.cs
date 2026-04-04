@@ -212,7 +212,7 @@ namespace Proiect
 
             if (string.IsNullOrWhiteSpace(searchText))
             {
-                MessageBox.Show("Introdu un titlu, autor sau domeniu!.");
+                MessageBox.Show("Introdu un titlu, autor sau domeniu.");
                 return;
             }
 
