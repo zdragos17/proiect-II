@@ -1,0 +1,47 @@
+[
+  {
+    "Title": "Ion",
+    "Author": "Liviu Rebreanu",
+    "Subject": "Literatur\u0103",
+    "IsReserved": true,
+    "ReservedBy": "alexandra12",
+    "ReservationDate": "2026-04-04T14:43:19.0764675+03:00",
+    "Status": "Rezervata"
+  },
+  {
+    "Title": "Morome\u021Bii",
+    "Author": "Marin Preda",
+    "Subject": "Literatur\u0103",
+    "IsReserved": true,
+    "ReservedBy": "aaa",
+    "ReservationDate": "2026-04-04T14:45:54.298078+03:00",
+    "Status": "Imprumutata"
+  },
+  {
+    "Title": "Programare C#",
+    "Author": "Andrew Troelsen",
+    "Subject": "Informatic\u0103",
+    "IsReserved": true,
+    "ReservedBy": "alexandra12",
+    "ReservationDate": "2026-04-04T13:06:39.0934041+03:00",
+    "Status": "Imprumutata"
+  },
+  {
+    "Title": "Algoritmi",
+    "Author": "Thomas H. Cormen",
+    "Subject": "Informatic\u0103",
+    "IsReserved": true,
+    "ReservedBy": "alexandra12",
+    "ReservationDate": "2026-04-04T13:29:00.7582219+03:00",
+    "Status": "Imprumutata"
+  },
+  {
+    "Title": "Analiz\u0103 Matematic\u0103",
+    "Author": "Autor Necunoscut",
+    "Subject": "Matematic\u0103",
+    "IsReserved": true,
+    "ReservedBy": "dragos",
+    "ReservationDate": "2026-04-04T15:16:34.0195516+03:00",
+    "Status": "Rezervata"
+  }
+]

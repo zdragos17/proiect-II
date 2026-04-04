@@ -1,0 +1,42 @@
+[
+  {
+    "Username": "alexandra12",
+    "Title": "Programare C#",
+    "Author": "Andrew Troelsen",
+    "Status": "Imprumutata",
+    "ReservationDate": "2026-04-04T13:06:39.0934041+03:00",
+    "BorrowDate": "2026-04-04T13:29:45.2413304+03:00"
+  },
+  {
+    "Username": "alexandra12",
+    "Title": "Algoritmi",
+    "Author": "Thomas H. Cormen",
+    "Status": "Imprumutata",
+    "ReservationDate": "2026-04-04T13:29:00.7582219+03:00",
+    "BorrowDate": "2026-04-04T13:46:27.0642928+03:00"
+  },
+  {
+    "Username": "alexandra12",
+    "Title": "Ion",
+    "Author": "Liviu Rebreanu",
+    "Status": "Rezervata",
+    "ReservationDate": "2026-04-04T14:43:19.0764675+03:00",
+    "BorrowDate": null
+  },
+  {
+    "Username": "aaa",
+    "Title": "Morome\u021Bii",
+    "Author": "Marin Preda",
+    "Status": "Imprumutata",
+    "ReservationDate": "2026-04-04T14:45:54.298078+03:00",
+    "BorrowDate": "2026-04-04T14:46:54.3975687+03:00"
+  },
+  {
+    "Username": "dragos",
+    "Title": "Analiz\u0103 Matematic\u0103",
+    "Author": "Autor Necunoscut",
+    "Status": "Rezervata",
+    "ReservationDate": "2026-04-04T15:16:34.0273589+03:00",
+    "BorrowDate": null
+  }
+]
