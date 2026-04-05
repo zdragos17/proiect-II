@@ -69,7 +69,7 @@ namespace Proiect {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Proiect;component/mybookswindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Proiect;V1.0.0.0;component/mybookswindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\MyBooksWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -69,7 +69,7 @@ namespace Proiect {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Proiect;component/studentloanswindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Proiect;V1.0.0.0;component/studentloanswindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\StudentLoansWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

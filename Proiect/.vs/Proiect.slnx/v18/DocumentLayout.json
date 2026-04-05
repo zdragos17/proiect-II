@@ -3,12 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\neagd\\proiect-II\\Proiect\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9DBA0D49-E44B-1046-654B-A9732B412A8B}|Proiect\\Proiect.csproj|c:\\users\\neagd\\proiect-ii\\proiect\\proiect\\studentwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9DBA0D49-E44B-1046-654B-A9732B412A8B}|Proiect\\Proiect.csproj|solutionrelative:proiect\\studentwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9DBA0D49-E44B-1046-654B-A9732B412A8B}|Proiect\\Proiect.csproj|c:\\users\\neagd\\proiect-ii\\proiect\\proiect\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{9DBA0D49-E44B-1046-654B-A9732B412A8B}|Proiect\\Proiect.csproj|solutionrelative:proiect\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9DBA0D49-E44B-1046-654B-A9732B412A8B}|Proiect\\Proiect.csproj|c:\\users\\neagd\\proiect-ii\\proiect\\proiect\\studentwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{9DBA0D49-E44B-1046-654B-A9732B412A8B}|Proiect\\Proiect.csproj|solutionrelative:proiect\\studentwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9DBA0D49-E44B-1046-654B-A9732B412A8B}|Proiect\\Proiect.csproj|c:\\users\\neagd\\proiect-ii\\proiect\\proiect\\angajatwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{9DBA0D49-E44B-1046-654B-A9732B412A8B}|Proiect\\Proiect.csproj|solutionrelative:proiect\\angajatwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9DBA0D49-E44B-1046-654B-A9732B412A8B}|Proiect\\Proiect.csproj|c:\\users\\neagd\\proiect-ii\\proiect\\proiect\\angajatwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9DBA0D49-E44B-1046-654B-A9732B412A8B}|Proiect\\Proiect.csproj|solutionrelative:proiect\\angajatwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9DBA0D49-E44B-1046-654B-A9732B412A8B}|Proiect\\Proiect.csproj|c:\\users\\neagd\\proiect-ii\\proiect\\proiect\\studentwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9DBA0D49-E44B-1046-654B-A9732B412A8B}|Proiect\\Proiect.csproj|solutionrelative:proiect\\studentwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9DBA0D49-E44B-1046-654B-A9732B412A8B}|Proiect\\Proiect.csproj|c:\\users\\neagd\\proiect-ii\\proiect\\proiect\\mybookswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -25,14 +37,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{9DBA0D49-E44B-1046-654B-A9732B412A8B}|Proiect\\Proiect.csproj|c:\\users\\neagd\\proiect-ii\\proiect\\proiect\\studentloanswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{9DBA0D49-E44B-1046-654B-A9732B412A8B}|Proiect\\Proiect.csproj|solutionrelative:proiect\\studentloanswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9DBA0D49-E44B-1046-654B-A9732B412A8B}|Proiect\\Proiect.csproj|c:\\users\\neagd\\proiect-ii\\proiect\\proiect\\angajatwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9DBA0D49-E44B-1046-654B-A9732B412A8B}|Proiect\\Proiect.csproj|solutionrelative:proiect\\angajatwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9DBA0D49-E44B-1046-654B-A9732B412A8B}|Proiect\\Proiect.csproj|c:\\users\\neagd\\proiect-ii\\proiect\\proiect\\angajatwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{9DBA0D49-E44B-1046-654B-A9732B412A8B}|Proiect\\Proiect.csproj|solutionrelative:proiect\\angajatwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9DBA0D49-E44B-1046-654B-A9732B412A8B}|Proiect\\Proiect.csproj|c:\\users\\neagd\\proiect-ii\\proiect\\proiect\\studentuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -66,11 +70,60 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AngajatWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\AngajatWindow.xaml",
+              "RelativeDocumentMoniker": "Proiect\\AngajatWindow.xaml",
+              "ToolTip": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\AngajatWindow.xaml",
+              "RelativeToolTip": "Proiect\\AngajatWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-03T20:26:57.37Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AngajatWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\AngajatWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Proiect\\AngajatWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\AngajatWindow.xaml.cs",
+              "RelativeToolTip": "Proiect\\AngajatWindow.xaml.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAYwGsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T20:27:24.55Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StudentWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\StudentWindow.xaml",
+              "RelativeDocumentMoniker": "Proiect\\StudentWindow.xaml",
+              "ToolTip": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\StudentWindow.xaml",
+              "RelativeToolTip": "Proiect\\StudentWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-03T20:21:08.117Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\App.xaml",
+              "RelativeDocumentMoniker": "Proiect\\App.xaml",
+              "ToolTip": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\App.xaml",
+              "RelativeToolTip": "Proiect\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-05T16:02:41.441Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "StudentWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\StudentWindow.xaml.cs",
               "RelativeDocumentMoniker": "Proiect\\StudentWindow.xaml.cs",
@@ -84,18 +137,28 @@
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "StudentUser.cs",
-              "DocumentMoniker": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\StudentUser.cs",
-              "RelativeDocumentMoniker": "Proiect\\StudentUser.cs",
-              "ToolTip": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\StudentUser.cs",
-              "RelativeToolTip": "Proiect\\StudentUser.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-04T11:14:26.588Z"
+              "Title": "StudentLoansWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\StudentLoansWindow.xaml",
+              "RelativeDocumentMoniker": "Proiect\\StudentLoansWindow.xaml",
+              "ToolTip": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\StudentLoansWindow.xaml",
+              "RelativeToolTip": "Proiect\\StudentLoansWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-04T11:16:16.225Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 10,
+              "Title": "MyBooksWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\MyBooksWindow.xaml",
+              "RelativeDocumentMoniker": "Proiect\\MyBooksWindow.xaml",
+              "ToolTip": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\MyBooksWindow.xaml",
+              "RelativeToolTip": "Proiect\\MyBooksWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-03T20:33:33.191Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "MyBooksWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\MyBooksWindow.xaml.cs",
               "RelativeDocumentMoniker": "Proiect\\MyBooksWindow.xaml.cs",
@@ -108,28 +171,18 @@
             {
               "$type": "Document",
               "DocumentIndex": 9,
-              "Title": "MyBooksWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\MyBooksWindow.xaml",
-              "RelativeDocumentMoniker": "Proiect\\MyBooksWindow.xaml",
-              "ToolTip": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\MyBooksWindow.xaml",
-              "RelativeToolTip": "Proiect\\MyBooksWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-04-03T20:33:33.191Z"
+              "Title": "StudentUser.cs",
+              "DocumentMoniker": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\StudentUser.cs",
+              "RelativeDocumentMoniker": "Proiect\\StudentUser.cs",
+              "ToolTip": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\StudentUser.cs",
+              "RelativeToolTip": "Proiect\\StudentUser.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-04T11:14:26.588Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "StudentLoansWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\StudentLoansWindow.xaml",
-              "RelativeDocumentMoniker": "Proiect\\StudentLoansWindow.xaml",
-              "ToolTip": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\StudentLoansWindow.xaml",
-              "RelativeToolTip": "Proiect\\StudentLoansWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-04-04T11:16:16.225Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "StudentLoansWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\StudentLoansWindow.xaml.cs",
               "RelativeDocumentMoniker": "Proiect\\StudentLoansWindow.xaml.cs",
@@ -141,41 +194,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "AngajatWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\AngajatWindow.xaml.cs",
-              "RelativeDocumentMoniker": "Proiect\\AngajatWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\AngajatWindow.xaml.cs",
-              "RelativeToolTip": "Proiect\\AngajatWindow.xaml.cs",
-              "ViewState": "AgIAAE4AAAAAAAAAAAAYwGsAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-03T20:27:24.55Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "AngajatWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\AngajatWindow.xaml",
-              "RelativeDocumentMoniker": "Proiect\\AngajatWindow.xaml",
-              "ToolTip": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\AngajatWindow.xaml",
-              "RelativeToolTip": "Proiect\\AngajatWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-04-03T20:26:57.37Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "StudentWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\StudentWindow.xaml",
-              "RelativeDocumentMoniker": "Proiect\\StudentWindow.xaml",
-              "ToolTip": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\StudentWindow.xaml",
-              "RelativeToolTip": "Proiect\\StudentWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-04-03T20:21:08.117Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "BorrowedBook.cs",
               "DocumentMoniker": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\BorrowedBook.cs",
               "RelativeDocumentMoniker": "Proiect\\BorrowedBook.cs",
@@ -187,7 +206,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "Book.cs",
               "DocumentMoniker": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\Book.cs",
               "RelativeDocumentMoniker": "Proiect\\Book.cs",
@@ -199,7 +218,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\User.cs",
               "RelativeDocumentMoniker": "Proiect\\User.cs",
@@ -211,18 +230,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\MainWindow.xaml",
               "RelativeDocumentMoniker": "Proiect\\MainWindow.xaml",
               "ToolTip": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\MainWindow.xaml",
               "RelativeToolTip": "Proiect\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-04-03T19:38:08.209Z"
+              "WhenOpened": "2026-04-03T19:38:08.209Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\neagd\\proiect-II\\Proiect\\Proiect\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "Proiect\\MainWindow.xaml.cs",
