@@ -40,6 +40,7 @@
 
             <WrapPanel Grid.Row="1" VerticalAlignment="Center">
                 <Button Content="Cărțile Mele" Width="140" Margin="0,0,25,10" Click="MyBooksButton_Click"/>
+                <Button Content="Săli de lectură" Width="140" Margin="0,0,25,10" Click="StudyRoomsButton_Click"/>
 
                 <TextBlock Text="Căutare catalog:" VerticalAlignment="Center" Margin="0,0,10,10" FontWeight="SemiBold" Foreground="#495057"/>
                 <TextBox x:Name="SearchTextBox" Width="300" Margin="0,0,15,10" TextChanged="SearchTextBox_TextChanged"/>

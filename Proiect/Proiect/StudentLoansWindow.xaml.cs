@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text.Json;
 using System.Windows;
 
 namespace Proiect
 {
     public partial class StudentLoansWindow : Window
     {
-        private readonly string borrowedBooksFilePath = "borrowedBooks.json";
-        private readonly string booksFilePath = "books.json";
-
+        private readonly Services.LibraryService _libraryService = new Services.LibraryService();
         private string studentUsername;
         private List<BorrowedBook> borrowedBooks = new List<BorrowedBook>();
         private List<Book> books = new List<Book>();
@@ -22,68 +18,7 @@ namespace Proiect
             studentUsername = username;
             TitleTextBlock.Text = $"Fișa studentului - {studentUsername}";
 
-            LoadBooks();
-            LoadBorrowedBooks();
-            RemoveExpiredReservations();
             RefreshGrid();
-        }
-
-        private void LoadBooks()
-        {
-            if (!File.Exists(booksFilePath))
-            {
-                books = new List<Book>();
-                return;
-            }
-
-            string json = File.ReadAllText(booksFilePath);
-
-            if (string.IsNullOrWhiteSpace(json))
-            {
-                books = new List<Book>();
-                return;
-            }
-
-            books = JsonSerializer.Deserialize<List<Book>>(json) ?? new List<Book>();
-        }
-
-        private void SaveBooks()
-        {
-            string json = JsonSerializer.Serialize(books, new JsonSerializerOptions
-            {
-                WriteIndented = true
-            });
-
-            File.WriteAllText(booksFilePath, json);
-        }
-
-        private void LoadBorrowedBooks()
-        {
-            if (!File.Exists(borrowedBooksFilePath))
-            {
-                borrowedBooks = new List<BorrowedBook>();
-                return;
-            }
-
-            string json = File.ReadAllText(borrowedBooksFilePath);
-
-            if (string.IsNullOrWhiteSpace(json))
-            {
-                borrowedBooks = new List<BorrowedBook>();
-                return;
-            }
-
-            borrowedBooks = JsonSerializer.Deserialize<List<BorrowedBook>>(json) ?? new List<BorrowedBook>();
-        }
-
-        private void SaveBorrowedBooks()
-        {
-            string json = JsonSerializer.Serialize(borrowedBooks, new JsonSerializerOptions
-            {
-                WriteIndented = true
-            });
-
-            File.WriteAllText(borrowedBooksFilePath, json);
         }
 
         private void RemoveExpiredReservations()
@@ -102,9 +37,7 @@ namespace Proiect
                         borrowedBook.Status = "Expirata";
                         borrowedChanged = true;
 
-                        Book matchingBook = books.FirstOrDefault(b =>
-                            b.Title == borrowedBook.Title &&
-                            b.ReservedBy == borrowedBook.Username);
+                        Book matchingBook = books.FirstOrDefault(b => b.Title == borrowedBook.Title && b.ReservedBy == borrowedBook.Username);
 
                         if (matchingBook != null)
                         {
@@ -118,27 +51,20 @@ namespace Proiect
                 }
             }
 
-            if (borrowedChanged)
-            {
-                SaveBorrowedBooks();
-            }
-
-            if (booksChanged)
-            {
-                SaveBooks();
-            }
+            if (borrowedChanged) _libraryService.SaveBorrowedBooks(borrowedBooks);
+            if (booksChanged) _libraryService.SaveBooks(books);
         }
 
         private void RefreshGrid()
         {
-            LoadBooks();
-            LoadBorrowedBooks();
-            RemoveExpiredReservations();
-            LoadBorrowedBooks();
+            books = _libraryService.GetAllBooks();
+            borrowedBooks = _libraryService.GetBorrowedBooks();
 
-            var studentBooks = borrowedBooks
-                .Where(b => b.Username == studentUsername)
-                .ToList();
+            RemoveExpiredReservations();
+
+            borrowedBooks = _libraryService.GetBorrowedBooks();
+
+            var studentBooks = borrowedBooks.Where(b => b.Username == studentUsername).ToList();
 
             StudentBooksDataGrid.ItemsSource = null;
             StudentBooksDataGrid.ItemsSource = studentBooks;
@@ -147,7 +73,6 @@ namespace Proiect
         private void MarkAsBorrowedButton_Click(object sender, RoutedEventArgs e)
         {
             BorrowedBook selectedBook = StudentBooksDataGrid.SelectedItem as BorrowedBook;
-
             if (selectedBook == null)
             {
                 MessageBox.Show("Selectează o carte.");
@@ -169,17 +94,14 @@ namespace Proiect
             selectedBook.Status = "Imprumutata";
             selectedBook.BorrowDate = DateTime.Now;
 
-            Book matchingBook = books.FirstOrDefault(b =>
-                b.Title == selectedBook.Title &&
-                b.ReservedBy == selectedBook.Username);
-
+            Book matchingBook = books.FirstOrDefault(b => b.Title == selectedBook.Title && b.ReservedBy == selectedBook.Username);
             if (matchingBook != null)
             {
                 matchingBook.Status = "Imprumutata";
             }
 
-            SaveBorrowedBooks();
-            SaveBooks();
+            _libraryService.SaveBorrowedBooks(borrowedBooks);
+            _libraryService.SaveBooks(books);
             RefreshGrid();
 
             MessageBox.Show("Statusul a fost schimbat în Imprumutata.");

@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET10_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NET9_0_OR_GREATER;NET10_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 C:\Users\neagd\proiect-II\Proiect\Proiect\App.xaml
-5-315264791
+61261986222
 
-141386402400
+17-1126276353
 206-81868862
-AngajatWindow.xaml;MainWindow.xaml;MyBooksWindow.xaml;StudentLoansWindow.xaml;StudentWindow.xaml;
+AngajatWindow.xaml;MainWindow.xaml;MyBooksWindow.xaml;StudentLoansWindow.xaml;StudentWindow.xaml;StudyRoomsWindow.xaml;
 
-True
+False
 

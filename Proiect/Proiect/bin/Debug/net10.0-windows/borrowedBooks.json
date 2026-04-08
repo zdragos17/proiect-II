@@ -43,7 +43,7 @@
     "Username": "dragos",
     "Title": "Analiz\u0103 Matematic\u0103",
     "Author": "Autor Necunoscut",
-    "Status": "Rezervata",
+    "Status": "Expirata",
     "ReservationDate": "2026-04-05T19:05:34.072588+03:00",
     "BorrowDate": null
   },
@@ -51,8 +51,16 @@
     "Username": "dragos",
     "Title": "Ion",
     "Author": "Liviu Rebreanu",
-    "Status": "Rezervata",
+    "Status": "Expirata",
     "ReservationDate": "2026-04-05T19:18:22.6634358+03:00",
+    "BorrowDate": null
+  },
+  {
+    "Username": "dragos",
+    "Title": "Analiz\u0103 Matematic\u0103",
+    "Author": "Autor Necunoscut",
+    "Status": "Rezervata",
+    "ReservationDate": "2026-04-08T17:40:32.1827432+03:00",
     "BorrowDate": null
   }
 ]

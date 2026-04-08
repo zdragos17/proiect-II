@@ -1,19 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text.Json;
+using System.Text;
 using System.Windows;
 using System.Globalization;
-using System.Text;
 
 namespace Proiect
 {
     public partial class StudentWindow : Window
     {
-        private readonly string booksFilePath = "books.json";
-        private readonly string borrowedBooksFilePath = "borrowedBooks.json";
-
+        private readonly Services.LibraryService _libraryService = new Services.LibraryService();
         private string currentUsername;
         private List<Book> books = new List<Book>();
 
@@ -24,35 +20,31 @@ namespace Proiect
             WelcomeTextBlock.Text = $"Bun venit, {currentUsername}!";
 
             EnsureBooksFileExists();
-            LoadBooks();
+            books = _libraryService.GetAllBooks();
             RemoveExpiredReservations();
             RefreshBooksGrid();
 
             this.Activate();
             this.Focus();
         }
+
         private string NormalizeText(string text)
         {
-            if (string.IsNullOrWhiteSpace(text))
-                return string.Empty;
-
+            if (string.IsNullOrWhiteSpace(text)) return string.Empty;
             string normalized = text.ToLower().Normalize(NormalizationForm.FormD);
             StringBuilder sb = new StringBuilder();
-
             foreach (char c in normalized)
             {
                 UnicodeCategory uc = CharUnicodeInfo.GetUnicodeCategory(c);
-                if (uc != UnicodeCategory.NonSpacingMark)
-                {
-                    sb.Append(c);
-                }
+                if (uc != UnicodeCategory.NonSpacingMark) sb.Append(c);
             }
-
             return sb.ToString().Normalize(NormalizationForm.FormC);
         }
+
         private void EnsureBooksFileExists()
         {
-            if (!File.Exists(booksFilePath))
+            var existingBooks = _libraryService.GetAllBooks();
+            if (existingBooks.Count == 0)
             {
                 List<Book> defaultBooks = new List<Book>
                 {
@@ -62,61 +54,8 @@ namespace Proiect
                     new Book { Title = "Algoritmi", Author = "Thomas H. Cormen", Subject = "Informatică", IsReserved = false, ReservedBy = "" },
                     new Book { Title = "Analiză Matematică", Author = "Autor Necunoscut", Subject = "Matematică", IsReserved = false, ReservedBy = "" }
                 };
-
-                SaveBooks(defaultBooks);
+                _libraryService.SaveBooks(defaultBooks);
             }
-        }
-
-        private void LoadBooks()
-        {
-            if (!File.Exists(booksFilePath))
-            {
-                books = new List<Book>();
-                return;
-            }
-
-            string json = File.ReadAllText(booksFilePath);
-
-            if (string.IsNullOrWhiteSpace(json))
-            {
-                books = new List<Book>();
-                return;
-            }
-
-            books = JsonSerializer.Deserialize<List<Book>>(json) ?? new List<Book>();
-        }
-
-        private void SaveBooks(List<Book> booksToSave)
-        {
-            string json = JsonSerializer.Serialize(booksToSave, new JsonSerializerOptions
-            {
-                WriteIndented = true
-            });
-
-            File.WriteAllText(booksFilePath, json);
-        }
-
-        private List<BorrowedBook> LoadBorrowedBooks()
-        {
-            if (!File.Exists(borrowedBooksFilePath))
-                return new List<BorrowedBook>();
-
-            string json = File.ReadAllText(borrowedBooksFilePath);
-
-            if (string.IsNullOrWhiteSpace(json))
-                return new List<BorrowedBook>();
-
-            return JsonSerializer.Deserialize<List<BorrowedBook>>(json) ?? new List<BorrowedBook>();
-        }
-
-        private void SaveBorrowedBooks(List<BorrowedBook> borrowedBooks)
-        {
-            string json = JsonSerializer.Serialize(borrowedBooks, new JsonSerializerOptions
-            {
-                WriteIndented = true
-            });
-
-            File.WriteAllText(borrowedBooksFilePath, json);
         }
 
         private void RemoveExpiredReservations()
@@ -124,21 +63,16 @@ namespace Proiect
             bool booksChanged = false;
             bool borrowedChanged = false;
 
-            List<BorrowedBook> borrowedBooks = LoadBorrowedBooks();
+            List<BorrowedBook> borrowedBooks = _libraryService.GetBorrowedBooks();
 
             foreach (Book book in books)
             {
                 if (book.IsReserved && book.ReservationDate.HasValue)
                 {
                     TimeSpan elapsed = DateTime.Now - book.ReservationDate.Value;
-
                     if (elapsed > TimeSpan.FromHours(24))
                     {
-                        bool isStillOnlyReserved = borrowedBooks.Any(b =>
-                            b.Title == book.Title &&
-                            b.Username == book.ReservedBy &&
-                            b.Status == "Rezervata");
-
+                        bool isStillOnlyReserved = borrowedBooks.Any(b => b.Title == book.Title && b.Username == book.ReservedBy && b.Status == "Rezervata");
                         if (isStillOnlyReserved)
                         {
                             book.IsReserved = false;
@@ -155,7 +89,6 @@ namespace Proiect
                 if (borrowedBook.Status == "Rezervata" && borrowedBook.ReservationDate.HasValue)
                 {
                     TimeSpan elapsed = DateTime.Now - borrowedBook.ReservationDate.Value;
-
                     if (elapsed > TimeSpan.FromHours(24))
                     {
                         borrowedBook.Status = "Expirata";
@@ -164,24 +97,17 @@ namespace Proiect
                 }
             }
 
-            if (booksChanged)
-            {
-                SaveBooks(books);
-            }
-
-            if (borrowedChanged)
-            {
-                SaveBorrowedBooks(borrowedBooks);
-            }
+            if (booksChanged) _libraryService.SaveBooks(books);
+            if (borrowedChanged) _libraryService.SaveBorrowedBooks(borrowedBooks);
         }
 
         private void RefreshBooksGrid()
         {
-            LoadBooks();
+            books = _libraryService.GetAllBooks();
             RemoveExpiredReservations();
-            LoadBooks();
+            books = _libraryService.GetAllBooks();
 
-            List<BorrowedBook> borrowedBooks = LoadBorrowedBooks();
+            List<BorrowedBook> borrowedBooks = _libraryService.GetBorrowedBooks();
 
             foreach (Book book in books)
             {
@@ -209,7 +135,6 @@ namespace Proiect
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             string searchText = NormalizeText(SearchTextBox.Text.Trim());
-
             if (string.IsNullOrWhiteSpace(searchText))
             {
                 MessageBox.Show("Introdu un titlu, autor sau domeniu.");
@@ -219,8 +144,7 @@ namespace Proiect
             var filteredBooks = books.Where(b =>
                 NormalizeText(b.Title).Contains(searchText) ||
                 NormalizeText(b.Author).Contains(searchText) ||
-                NormalizeText(b.Subject).Contains(searchText))
-                .ToList();
+                NormalizeText(b.Subject).Contains(searchText)).ToList();
 
             BooksDataGrid.ItemsSource = null;
             BooksDataGrid.ItemsSource = filteredBooks;
@@ -231,10 +155,10 @@ namespace Proiect
             SearchTextBox.Clear();
             RefreshBooksGrid();
         }
+
         private void SearchTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
             string searchText = NormalizeText(SearchTextBox.Text.Trim());
-
             if (string.IsNullOrWhiteSpace(searchText))
             {
                 RefreshBooksGrid();
@@ -244,26 +168,27 @@ namespace Proiect
             var filteredBooks = books.Where(b =>
                 NormalizeText(b.Title).Contains(searchText) ||
                 NormalizeText(b.Author).Contains(searchText) ||
-                NormalizeText(b.Subject).Contains(searchText))
-                .ToList();
+                NormalizeText(b.Subject).Contains(searchText)).ToList();
 
             BooksDataGrid.ItemsSource = null;
             BooksDataGrid.ItemsSource = filteredBooks;
         }
+
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             this.Close();
         }
+
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
             RefreshBooksGrid();
         }
+
         private void ReserveButton_Click(object sender, RoutedEventArgs e)
         {
             Book selectedBook = BooksDataGrid.SelectedItem as Book;
-
             if (selectedBook == null)
             {
                 MessageBox.Show("Selectează o carte.");
@@ -281,10 +206,9 @@ namespace Proiect
             selectedBook.ReservationDate = DateTime.Now;
             selectedBook.Status = "Rezervata";
 
-            SaveBooks(books);
+            _libraryService.SaveBooks(books);
 
-            List<BorrowedBook> borrowedBooks = LoadBorrowedBooks();
-
+            List<BorrowedBook> borrowedBooks = _libraryService.GetBorrowedBooks();
             borrowedBooks.Add(new BorrowedBook
             {
                 Username = currentUsername,
@@ -295,8 +219,7 @@ namespace Proiect
                 BorrowDate = null
             });
 
-            SaveBorrowedBooks(borrowedBooks);
-
+            _libraryService.SaveBorrowedBooks(borrowedBooks);
             RefreshBooksGrid();
 
             MessageBox.Show("Cartea a fost rezervată. Ai 24 de ore să o ridici.");
@@ -306,6 +229,12 @@ namespace Proiect
         {
             MyBooksWindow myBooksWindow = new MyBooksWindow(currentUsername);
             myBooksWindow.Show();
+        }
+        private void StudyRoomsButton_Click(object sender, RoutedEventArgs e)
+        {
+            StudyRoomsWindow studyRoomsWindow = new StudyRoomsWindow(currentUsername);
+            studyRoomsWindow.Show();
+            this.Close();
         }
     }
 }

@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -9,7 +7,7 @@ namespace Proiect
 {
     public partial class MainWindow : Window
     {
-        private readonly string filePath = "users.json";
+        private readonly Services.LibraryService _libraryService = new Services.LibraryService();
 
         public MainWindow()
         {
@@ -20,7 +18,6 @@ namespace Proiect
         {
             string username = UsernameTextBox.Text.Trim();
             string password = PasswordBox.Password.Trim();
-
             ComboBoxItem selectedRoleItem = (ComboBoxItem)RoleComboBox.SelectedItem;
             string role = selectedRoleItem.Content.ToString().Trim().ToLower();
 
@@ -30,26 +27,18 @@ namespace Proiect
                 return;
             }
 
-            List<User> users = LoadUsers();
+            List<User> users = _libraryService.GetAllUsers();
 
-            bool userExists = users.Any(u => u.Username == username);
-            if (userExists)
+            if (users.Any(u => u.Username == username))
             {
                 MessageBox.Show("Acest username există deja.");
                 return;
             }
 
-            users.Add(new User
-            {
-                Username = username,
-                Password = password,
-                Role = role
-            });
-
-            SaveUsers(users);
+            users.Add(new User { Username = username, Password = password, Role = role });
+            _libraryService.SaveUsers(users);
 
             MessageBox.Show("Înregistrare reușită!");
-
             UsernameTextBox.Clear();
             PasswordBox.Clear();
             RoleComboBox.SelectedIndex = 0;
@@ -66,8 +55,7 @@ namespace Proiect
                 return;
             }
 
-            List<User> users = LoadUsers();
-
+            List<User> users = _libraryService.GetAllUsers();
             User foundUser = users.FirstOrDefault(u => u.Username == username && u.Password == password);
 
             if (foundUser == null)
@@ -77,12 +65,6 @@ namespace Proiect
             }
 
             string role = foundUser.Role?.Trim().ToLower();
-
-            if (string.IsNullOrWhiteSpace(role))
-            {
-                MessageBox.Show("Acest utilizator nu are rol setat.");
-                return;
-            }
 
             if (role == "student")
             {
@@ -104,29 +86,6 @@ namespace Proiect
             {
                 MessageBox.Show($"Rol necunoscut: {foundUser.Role}");
             }
-        }
-
-        private List<User> LoadUsers()
-        {
-            if (!File.Exists(filePath))
-                return new List<User>();
-
-            string json = File.ReadAllText(filePath);
-
-            if (string.IsNullOrWhiteSpace(json))
-                return new List<User>();
-
-            return JsonSerializer.Deserialize<List<User>>(json) ?? new List<User>();
-        }
-
-        private void SaveUsers(List<User> users)
-        {
-            string json = JsonSerializer.Serialize(users, new JsonSerializerOptions
-            {
-                WriteIndented = true
-            });
-
-            File.WriteAllText(filePath, json);
         }
     }
 }

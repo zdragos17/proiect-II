@@ -1,0 +1,45 @@
+﻿<Window x:Class="Proiect.StudyRoomsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Săli de lectură - Rezervare Loc" Height="600" Width="800"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Background="#F5F7FA" Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Rezervare Loc de Studiu" FontSize="26" FontWeight="Bold" Foreground="#2D2D2D" Margin="0,0,0,10"/>
+        <TextBlock Text="Alege un loc liber (verde) pentru a-l rezerva. Locurile roșii sunt deja ocupate." 
+                   Grid.Row="0" Margin="0,35,0,20" Foreground="#6C757D" FontSize="14"/>
+
+        <ItemsControl x:Name="SeatsItemsControl" Grid.Row="1" Margin="0,10,0,10">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Width="80" Height="80" Margin="10" 
+                            Content="{Binding SeatNumber}" FontSize="24" FontWeight="Bold"
+                            Background="{Binding Color}" Foreground="White"
+                            Tag="{Binding SeatNumber}" Click="SeatButton_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <Button Grid.Row="2" Content="Înapoi la meniu" Width="150" Height="40" 
+                HorizontalAlignment="Left" Click="BackButton_Click"/>
+    </Grid>
+</Window>
