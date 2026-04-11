@@ -59,8 +59,16 @@
     "Username": "dragos",
     "Title": "Analiz\u0103 Matematic\u0103",
     "Author": "Autor Necunoscut",
-    "Status": "Rezervata",
+    "Status": "Expirata",
     "ReservationDate": "2026-04-08T17:40:32.1827432+03:00",
+    "BorrowDate": null
+  },
+  {
+    "Username": "abc",
+    "Title": "Analiz\u0103 Matematic\u0103",
+    "Author": "Autor Necunoscut",
+    "Status": "Rezervata",
+    "ReservationDate": "2026-04-11T22:22:10.8820247+03:00",
     "BorrowDate": null
   }
 ]

@@ -2,14 +2,14 @@
   {
     "SeatNumber": 1,
     "IsReserved": true,
-    "ReservedBy": "dragos",
-    "ReservationDate": "2026-04-08T18:04:39.0467394+03:00"
+    "ReservedBy": "aaa",
+    "ReservationDate": "2026-04-11T22:20:51.8905183+03:00"
   },
   {
     "SeatNumber": 2,
-    "IsReserved": false,
-    "ReservedBy": "",
-    "ReservationDate": null
+    "IsReserved": true,
+    "ReservedBy": "abc",
+    "ReservationDate": "2026-04-11T22:21:26.9250133+03:00"
   },
   {
     "SeatNumber": 3,
