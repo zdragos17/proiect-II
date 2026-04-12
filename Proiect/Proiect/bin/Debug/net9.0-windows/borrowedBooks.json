@@ -1,0 +1,18 @@
+[
+  {
+    "Username": "abcd",
+    "Title": "Ion",
+    "Author": "Liviu Rebreanu",
+    "Status": "Rezervata",
+    "ReservationDate": "2026-04-12T00:11:59.3687499+03:00",
+    "BorrowDate": null
+  },
+  {
+    "Username": "abcd",
+    "Title": "Programare C#",
+    "Author": "Andrew Troelsen",
+    "Status": "Rezervata",
+    "ReservationDate": "2026-04-12T00:12:01.2607649+03:00",
+    "BorrowDate": null
+  }
+]
