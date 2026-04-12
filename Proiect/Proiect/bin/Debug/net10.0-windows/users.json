@@ -23,5 +23,15 @@
     "Username": "dragos2",
     "Password": "abcd",
     "Role": "angajat"
+  },
+  {
+    "Username": "Andrei",
+    "Password": "1234",
+    "Role": "angajat"
+  },
+  {
+    "Username": "abc",
+    "Password": "1234",
+    "Role": "student"
   }
 ]
