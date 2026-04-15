@@ -1,0 +1,42 @@
+# [ DIRECTOARE DE COMPILARE - CURĂȚĂ TOT ]
+**/bin/
+**/obj/
+bin/
+obj/
+
+# [ VISUAL STUDIO SETTINGS - CURĂȚĂ .VS ]
+**/.vs/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.vstoken
+
+# [ .NET TEMPORARY FILES ]
+**/*.g.cs
+**/*.g.i.cs
+**/*.deps.json
+**/*.runtimeconfig.json
+**/*.pdb
+**/*.dll
+**/*.exe
+**/*.cache
+**/*.metadata.v10.bin
+**/*.projects.v10.bin
+**/*.strings.v10.bin
+**/*.vsidx
+**/*.dtbcache.v2
+**/*.futdcache.v2
+project.assets.json
+*.nuget.cache
+*.nuget.g.props
+*.nuget.g.targets
+
+# [ SQLITE TEMPORARY ]
+*.db-shm
+*.db-wal
+*.db-journal
+
+# [ PĂSTREAZĂ DATELE ȘI CODUL ]
+# Nu punem nimic aici pentru a permite *.cs, *.xaml și biblioteca.db

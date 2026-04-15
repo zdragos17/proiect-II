@@ -1,108 +1,164 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Text.Json;
-using Proiect;
+﻿using Proiect.Data; // Asigură-te că namespace-ul folderului Data e corect
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
 
 namespace Proiect.Services
 {
     public class LibraryService
     {
-        private readonly string booksFilePath = "books.json";
-        private readonly string borrowedBooksFilePath = "borrowedBooks.json";
-        private readonly string usersFilePath = "users.json";
-        private readonly string studySeatsFilePath = "studySeats.json";
-
         // --- GESTIUNE CARTI (BOOKS) ---
         public List<Book> GetAllBooks()
         {
-            if (!File.Exists(booksFilePath)) return new List<Book>();
-            string json = File.ReadAllText(booksFilePath);
-            return string.IsNullOrWhiteSpace(json) ? new List<Book>() : JsonSerializer.Deserialize<List<Book>>(json) ?? new List<Book>();
+            using var db = new LibraryContext();
+            return db.Books.ToList();
         }
 
         public void SaveBooks(List<Book> booksToSave)
         {
-            string json = JsonSerializer.Serialize(booksToSave, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(booksFilePath, json);
+            using var db = new LibraryContext();
+            foreach (var book in booksToSave)
+            {
+                // Aceasta este linia salvatoare:
+                if (string.IsNullOrEmpty(book.Status)) book.Status = "Disponibil";
+
+                var existingBook = db.Books.FirstOrDefault(b => b.Title == book.Title);
+                if (existingBook == null) db.Books.Add(book);
+                else db.Entry(existingBook).CurrentValues.SetValues(book);
+            }
+            db.SaveChanges(); // Eroarea nu mai apare aici pentru că Status are acum o valoare
         }
 
         // --- GESTIUNE IMPRUMUTURI (BORROWED BOOKS) ---
         public List<BorrowedBook> GetBorrowedBooks()
         {
-            if (!File.Exists(borrowedBooksFilePath)) return new List<BorrowedBook>();
-            string json = File.ReadAllText(borrowedBooksFilePath);
-            return string.IsNullOrWhiteSpace(json) ? new List<BorrowedBook>() : JsonSerializer.Deserialize<List<BorrowedBook>>(json) ?? new List<BorrowedBook>();
+            using var db = new LibraryContext();
+            return db.BorrowedBooks.ToList();
         }
 
         public void SaveBorrowedBooks(List<BorrowedBook> borrowedBooksToSave)
         {
-            string json = JsonSerializer.Serialize(borrowedBooksToSave, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(borrowedBooksFilePath, json);
+            using var db = new LibraryContext();
+            foreach (var borrowed in borrowedBooksToSave)
+            {
+                // Verificăm dacă împrumutul există deja (folosind cheile compuse: Username și Title)
+                var existing = db.BorrowedBooks.FirstOrDefault(bb =>
+                    bb.Username == borrowed.Username &&
+                    bb.Title == borrowed.Title &&
+                    bb.ReservationDate == borrowed.ReservationDate);
+
+                if (existing == null)
+                {
+                    // Dacă e nou, îl adăugăm
+                    db.BorrowedBooks.Add(borrowed);
+                }
+                else
+                {
+                    // Dacă există deja, actualizăm restul valorilor (ex: ReturnDate)
+                    db.Entry(existing).CurrentValues.SetValues(borrowed);
+                }
+            }
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                // Afișăm eroarea exactă pentru a vedea ce coloană lipsește (ex: Status sau Date)
+                MessageBox.Show("Eroare la salvarea împrumutului: " + ex.InnerException?.Message ?? ex.Message);
+            }
         }
 
         // --- GESTIUNE UTILIZATORI ---
         public List<User> GetAllUsers()
         {
-            if (!File.Exists(usersFilePath)) return new List<User>();
-            string json = File.ReadAllText(usersFilePath);
-            return string.IsNullOrWhiteSpace(json) ? new List<User>() : JsonSerializer.Deserialize<List<User>>(json) ?? new List<User>();
+            using var db = new LibraryContext();
+            return db.Users.ToList();
         }
 
         public void SaveUsers(List<User> usersToSave)
         {
-            string json = JsonSerializer.Serialize(usersToSave, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(usersFilePath, json);
+            using var db = new LibraryContext();
+
+            foreach (var user in usersToSave)
+            {
+                // Verificăm dacă userul există deja în baza de date după Username
+                var existingUser = db.Users.FirstOrDefault(u => u.Username == user.Username);
+
+                if (existingUser == null)
+                {
+                    // Dacă nu există deloc în DB, îl adăugăm ca nou
+                    db.Users.Add(user);
+                }
+                else
+                {
+                    // Dacă există deja, actualizăm doar valorile (parola, rolul)
+                    db.Entry(existingUser).CurrentValues.SetValues(user);
+                }
+            }
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Eroare la salvarea în baza de date: " + ex.Message);
+            }
         }
+
         // --- GESTIUNE LOCURI DE STUDIU (STUDY SEATS) ---
+        // Notă: Dacă vrei ca și locurile de studiu să fie în baza de date, 
+        // trebuie să adaugi DbSet<StudySeat> în LibraryContext.cs și să faci o migrare nouă.
 
         public List<StudySeat> GetAllSeats()
         {
-            if (!File.Exists(studySeatsFilePath))
+            using var db = new LibraryContext();
+            var seats = db.StudySeat.ToList();
+
+            if (!seats.Any())
             {
-                
-                var initialSeats = new List<StudySeat>();
+                // Inițializare locuri dacă baza de date e goală
                 for (int i = 1; i <= 20; i++)
                 {
-                    initialSeats.Add(new StudySeat { SeatNumber = i, IsReserved = false, ReservedBy = "" });
+                    seats.Add(new StudySeat { SeatNumber = i, IsReserved = false, ReservedBy = "" });
                 }
-                SaveSeats(initialSeats);
-                return initialSeats;
+                db.StudySeat.AddRange(seats);
+                db.SaveChanges();
             }
-
-            string json = File.ReadAllText(studySeatsFilePath);
-            return string.IsNullOrWhiteSpace(json) ? new List<StudySeat>() : JsonSerializer.Deserialize<List<StudySeat>>(json) ?? new List<StudySeat>();
+            return seats;
         }
 
         public void SaveSeats(List<StudySeat> seatsToSave)
         {
-            string json = JsonSerializer.Serialize(seatsToSave, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(studySeatsFilePath, json);
+            using var db = new LibraryContext();
+            db.StudySeat.UpdateRange(seatsToSave);
+            db.SaveChanges();
         }
 
         public void RemoveExpiredSeatReservations()
         {
-            var seats = GetAllSeats();
+            using var db = new LibraryContext();
+            var seats = db.StudySeat.Where(s => s.IsReserved && s.ReservationDate.HasValue).ToList();
             bool changed = false;
 
             foreach (var seat in seats)
             {
-                if (seat.IsReserved && seat.ReservationDate.HasValue)
+                TimeSpan elapsed = DateTime.Now - seat.ReservationDate.Value;
+                if (elapsed > TimeSpan.FromHours(4))
                 {
-                    
-                    TimeSpan elapsed = DateTime.Now - seat.ReservationDate.Value;
-                    if (elapsed > TimeSpan.FromHours(4))
-                    {
-                        seat.IsReserved = false;
-                        seat.ReservedBy = "";
-                        seat.ReservationDate = null;
-                        changed = true;
-                    }
+                    seat.IsReserved = false;
+                    seat.ReservedBy = "";
+                    seat.ReservationDate = null;
+                    changed = true;
                 }
             }
 
             if (changed)
             {
-                SaveSeats(seats);
+                db.SaveChanges();
             }
         }
     }
