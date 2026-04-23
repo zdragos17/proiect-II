@@ -21,6 +21,9 @@
           "build/netstandard2.0/Microsoft.CodeCoverage.targets": {}
         }
       },
+      "Microsoft.EntityFrameworkCore.Sqlite/10.0.5": {
+        "type": "package"
+      },
       "Microsoft.NET.Test.Sdk/17.8.0": {
         "type": "package",
         "dependencies": {
@@ -1712,6 +1715,9 @@
       "Proiect/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Sqlite": "10.0.5"
+        },
         "compile": {
           "bin/placeholder/Proiect.dll": {}
         },
@@ -1842,6 +1848,20 @@
         "lib/netcoreapp3.1/Microsoft.VisualStudio.CodeCoverage.Shim.dll",
         "microsoft.codecoverage.17.8.0.nupkg.sha512",
         "microsoft.codecoverage.nuspec"
+      ]
+    },
+    "Microsoft.EntityFrameworkCore.Sqlite/10.0.5": {
+      "sha512": "lxeRviglTkkmzYJVJ600yb6gJjnf5za9v7uH+0byuSXTGv7U8cT6hz7qRTmiGSOfLcl86QFdy2BBKaUFd6NQug==",
+      "type": "package",
+      "path": "microsoft.entityframeworkcore.sqlite/10.0.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "PACKAGE.md",
+        "lib/net10.0/_._",
+        "microsoft.entityframeworkcore.sqlite.10.0.5.nupkg.sha512",
+        "microsoft.entityframeworkcore.sqlite.nuspec"
       ]
     },
     "Microsoft.NET.Test.Sdk/17.8.0": {
@@ -5527,23 +5547,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\andre\\.nuget\\packages\\": {},
+    "C:\\Users\\Iulia\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\andre\\proiect-II\\Proiect\\testeProiect\\testeProiect.csproj",
+      "projectUniqueName": "C:\\Users\\Iulia\\proiect-II\\Proiect\\testeProiect\\testeProiect.csproj",
       "projectName": "testeProiect",
-      "projectPath": "C:\\Users\\andre\\proiect-II\\Proiect\\testeProiect\\testeProiect.csproj",
-      "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\andre\\proiect-II\\Proiect\\testeProiect\\obj\\",
+      "projectPath": "C:\\Users\\Iulia\\proiect-II\\Proiect\\testeProiect\\testeProiect.csproj",
+      "packagesPath": "C:\\Users\\Iulia\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Iulia\\proiect-II\\Proiect\\testeProiect\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Iulia\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -5558,8 +5578,8 @@
         "net9.0-windows7.0": {
           "targetAlias": "net9.0-windows",
           "projectReferences": {
-            "C:\\Users\\andre\\proiect-II\\Proiect\\Proiect\\Proiect.csproj": {
-              "projectPath": "C:\\Users\\andre\\proiect-II\\Proiect\\Proiect\\Proiect.csproj"
+            "C:\\Users\\Iulia\\proiect-II\\Proiect\\Proiect\\Proiect.csproj": {
+              "projectPath": "C:\\Users\\Iulia\\proiect-II\\Proiect\\Proiect\\Proiect.csproj"
             }
           }
         }
@@ -5574,7 +5594,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.300"
+      "SdkAnalysisLevel": "10.0.200"
     },
     "frameworks": {
       "net9.0-windows7.0": {
@@ -5613,8 +5633,19 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.312/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1202",
+      "level": "Error",
+      "message": "Package Microsoft.EntityFrameworkCore.Sqlite 10.0.5 is not compatible with net9.0-windows7.0 (.NETCoreApp,Version=v9.0). Package Microsoft.EntityFrameworkCore.Sqlite 10.0.5 supports: net10.0 (.NETCoreApp,Version=v10.0)",
+      "libraryId": "Microsoft.EntityFrameworkCore.Sqlite",
+      "targetGraphs": [
+        "net9.0-windows7.0"
+      ]
+    }
+  ]
 }

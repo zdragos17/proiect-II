@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\andre\\proiect-II\\Proiect\\testeProiect\\testeProiect.csproj": {}
+    "C:\\Users\\Iulia\\proiect-II\\Proiect\\testeProiect\\testeProiect.csproj": {}
   },
   "projects": {
-    "C:\\Users\\andre\\proiect-II\\Proiect\\Proiect\\Proiect.csproj": {
+    "C:\\Users\\Iulia\\proiect-II\\Proiect\\Proiect\\Proiect.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\andre\\proiect-II\\Proiect\\Proiect\\Proiect.csproj",
+        "projectUniqueName": "C:\\Users\\Iulia\\proiect-II\\Proiect\\Proiect\\Proiect.csproj",
         "projectName": "Proiect",
-        "projectPath": "C:\\Users\\andre\\proiect-II\\Proiect\\Proiect\\Proiect.csproj",
-        "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\andre\\proiect-II\\Proiect\\Proiect\\obj\\",
+        "projectPath": "C:\\Users\\Iulia\\proiect-II\\Proiect\\Proiect\\Proiect.csproj",
+        "packagesPath": "C:\\Users\\Iulia\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Iulia\\proiect-II\\Proiect\\Proiect\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Iulia\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -44,11 +44,23 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net9.0-windows7.0": {
           "targetAlias": "net9.0-windows",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[10.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[10.0.5, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -68,24 +80,24 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.312/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\andre\\proiect-II\\Proiect\\testeProiect\\testeProiect.csproj": {
+    "C:\\Users\\Iulia\\proiect-II\\Proiect\\testeProiect\\testeProiect.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\andre\\proiect-II\\Proiect\\testeProiect\\testeProiect.csproj",
+        "projectUniqueName": "C:\\Users\\Iulia\\proiect-II\\Proiect\\testeProiect\\testeProiect.csproj",
         "projectName": "testeProiect",
-        "projectPath": "C:\\Users\\andre\\proiect-II\\Proiect\\testeProiect\\testeProiect.csproj",
-        "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\andre\\proiect-II\\Proiect\\testeProiect\\obj\\",
+        "projectPath": "C:\\Users\\Iulia\\proiect-II\\Proiect\\testeProiect\\testeProiect.csproj",
+        "packagesPath": "C:\\Users\\Iulia\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Iulia\\proiect-II\\Proiect\\testeProiect\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Iulia\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -100,8 +112,8 @@
           "net9.0-windows7.0": {
             "targetAlias": "net9.0-windows",
             "projectReferences": {
-              "C:\\Users\\andre\\proiect-II\\Proiect\\Proiect\\Proiect.csproj": {
-                "projectPath": "C:\\Users\\andre\\proiect-II\\Proiect\\Proiect\\Proiect.csproj"
+              "C:\\Users\\Iulia\\proiect-II\\Proiect\\Proiect\\Proiect.csproj": {
+                "projectPath": "C:\\Users\\Iulia\\proiect-II\\Proiect\\Proiect\\Proiect.csproj"
               }
             }
           }
@@ -116,7 +128,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net9.0-windows7.0": {
@@ -155,7 +167,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.312/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
