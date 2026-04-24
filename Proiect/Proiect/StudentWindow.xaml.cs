@@ -120,11 +120,13 @@ namespace Proiect
                 {
                     book.Status = latestRecord.Status;
                     book.ReservationDate = latestRecord.ReservationDate;
+                    book.BorrowDate = latestRecord.BorrowDate;
                 }
                 else
                 {
                     book.Status = "Disponibila";
                     book.ReservationDate = null;
+                    book.BorrowDate = null;
                 }
             }
 
@@ -195,7 +197,13 @@ namespace Proiect
                 return;
             }
 
-            if (selectedBook.IsReserved)
+            if (selectedBook.Status == "Imprumutata" || selectedBook.Status == "Împrumutată")
+            {
+                MessageBox.Show("Cartea nu este disponibilă pentru rezervare.");
+                return;
+            }
+
+            if (selectedBook.IsReserved || selectedBook.Status == "Rezervata" || selectedBook.Status == "Rezervată")
             {
                 MessageBox.Show("Cartea este deja rezervată.");
                 return;
@@ -229,6 +237,7 @@ namespace Proiect
         {
             MyBooksWindow myBooksWindow = new MyBooksWindow(currentUsername);
             myBooksWindow.Show();
+            this.Close();
         }
         private void StudyRoomsButton_Click(object sender, RoutedEventArgs e)
         {

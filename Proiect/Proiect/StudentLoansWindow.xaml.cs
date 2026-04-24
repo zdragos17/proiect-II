@@ -8,15 +8,21 @@ namespace Proiect
     public partial class StudentLoansWindow : Window
     {
         private readonly Services.LibraryService _libraryService = new Services.LibraryService();
+
         private string studentUsername;
+        private string employeeUsername;
+
         private List<BorrowedBook> borrowedBooks = new List<BorrowedBook>();
         private List<Book> books = new List<Book>();
 
-        public StudentLoansWindow(string username)
+        public StudentLoansWindow(string studentUsername, string employeeUsername)
         {
             InitializeComponent();
-            studentUsername = username;
-            TitleTextBlock.Text = $"Fișa studentului - {studentUsername}";
+
+            this.studentUsername = studentUsername;
+            this.employeeUsername = employeeUsername;
+
+            TitleTextBlock.Text = $"Fișa studentului - {this.studentUsername}";
 
             RefreshGrid();
         }
@@ -37,7 +43,9 @@ namespace Proiect
                         borrowedBook.Status = "Expirata";
                         borrowedChanged = true;
 
-                        Book matchingBook = books.FirstOrDefault(b => b.Title == borrowedBook.Title && b.ReservedBy == borrowedBook.Username);
+                        Book matchingBook = books.FirstOrDefault(b =>
+                            b.Title == borrowedBook.Title &&
+                            b.ReservedBy == borrowedBook.Username);
 
                         if (matchingBook != null)
                         {
@@ -51,8 +59,11 @@ namespace Proiect
                 }
             }
 
-            if (borrowedChanged) _libraryService.SaveBorrowedBooks(borrowedBooks);
-            if (booksChanged) _libraryService.SaveBooks(books);
+            if (borrowedChanged)
+                _libraryService.SaveBorrowedBooks(borrowedBooks);
+
+            if (booksChanged)
+                _libraryService.SaveBooks(books);
         }
 
         private void RefreshGrid()
@@ -64,7 +75,9 @@ namespace Proiect
 
             borrowedBooks = _libraryService.GetBorrowedBooks();
 
-            var studentBooks = borrowedBooks.Where(b => b.Username == studentUsername).ToList();
+            var studentBooks = borrowedBooks
+                .Where(b => b.Username == studentUsername)
+                .ToList();
 
             StudentBooksDataGrid.ItemsSource = null;
             StudentBooksDataGrid.ItemsSource = studentBooks;
@@ -73,6 +86,7 @@ namespace Proiect
         private void MarkAsBorrowedButton_Click(object sender, RoutedEventArgs e)
         {
             BorrowedBook selectedBook = StudentBooksDataGrid.SelectedItem as BorrowedBook;
+
             if (selectedBook == null)
             {
                 MessageBox.Show("Selectează o carte.");
@@ -94,7 +108,10 @@ namespace Proiect
             selectedBook.Status = "Imprumutata";
             selectedBook.BorrowDate = DateTime.Now;
 
-            Book matchingBook = books.FirstOrDefault(b => b.Title == selectedBook.Title && b.ReservedBy == selectedBook.Username);
+            Book matchingBook = books.FirstOrDefault(b =>
+                b.Title == selectedBook.Title &&
+                b.ReservedBy == selectedBook.Username);
+
             if (matchingBook != null)
             {
                 matchingBook.Status = "Imprumutata";
@@ -102,6 +119,7 @@ namespace Proiect
 
             _libraryService.SaveBorrowedBooks(borrowedBooks);
             _libraryService.SaveBooks(books);
+
             RefreshGrid();
 
             MessageBox.Show("Statusul a fost schimbat în Imprumutata.");
@@ -109,6 +127,8 @@ namespace Proiect
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
+            AngajatWindow angajatWindow = new AngajatWindow(employeeUsername);
+            angajatWindow.Show();
             this.Close();
         }
     }

@@ -26,6 +26,7 @@
                     <Button Width="80" Height="80" Margin="10" 
                             Content="{Binding SeatNumber}" FontSize="24" FontWeight="Bold"
                             Background="{Binding Color}" Foreground="White"
+                            ToolTip="{Binding ToolTip}"
                             Tag="{Binding SeatNumber}" Click="SeatButton_Click">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
@@ -39,7 +40,19 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
 
-        <Button Grid.Row="2" Content="Înapoi la meniu" Width="150" Height="40" 
-                HorizontalAlignment="Left" Click="BackButton_Click"/>
+        <Grid Grid.Row="2" VerticalAlignment="Bottom" Margin="0,0,0,20">
+            <Button Content="Înapoi la meniu"
+            Width="180"
+            Height="45"
+            HorizontalAlignment="Left"
+            Click="BackButton_Click"/>
+
+            <Button Content="Refresh"
+            Width="120"
+            Height="45"
+            HorizontalAlignment="Right"
+            Click="RefreshButton_Click"/>
+        </Grid>
+
     </Grid>
 </Window>
