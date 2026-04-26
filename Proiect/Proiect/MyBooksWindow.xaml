@@ -26,7 +26,9 @@
                   Grid.Row="1"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
-                  IsReadOnly="True">
+                  IsReadOnly="True"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Titlu" Binding="{Binding Title}" Width="*"/>
                 <DataGridTextColumn Header="Autor" Binding="{Binding Author}" Width="*"/>
@@ -48,11 +50,21 @@
                     Height="35"
                     Click="BackButton_Click"/>
 
-            <Button Grid.Column="2"
-                    Content="Refresh"
-                    Width="100"
-                    Height="35"
-                    Click="RefreshButton_Click"/>
+            <StackPanel Grid.Column="2" Orientation="Horizontal">
+                <Button Content="Returnează / Anulează"
+                        Width="160"
+                        Height="35"
+                        Margin="0,0,10,0"
+                        Background="#A8192E"
+                        Foreground="White"
+                        FontWeight="SemiBold"
+                        Click="ReturnBookButton_Click"/>
+
+                <Button Content="Refresh"
+                        Width="100"
+                        Height="35"
+                        Click="RefreshButton_Click"/>
+            </StackPanel>
         </Grid>
     </Grid>
 </Window>

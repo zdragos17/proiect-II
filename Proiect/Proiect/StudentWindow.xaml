@@ -22,11 +22,49 @@
                     <TextBlock Text="  |  Biblioteca" Foreground="White" FontSize="16" FontWeight="SemiBold"/>
                 </StackPanel>
 
-                <Button Content="Ieșire cont (Logout)" 
-                        HorizontalAlignment="Right" VerticalAlignment="Center" 
-                        Width="160"
-                        Style="{StaticResource HeaderButtonStyle}"
-                        Click="LogoutButton_Click"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+
+                    <Button Content="Ieșire cont (Logout)" 
+                            Width="160" Margin="0,0,15,0"
+                            Style="{StaticResource HeaderButtonStyle}"
+                            Click="LogoutButton_Click"/>
+
+                    <Button Content="Închide app" 
+                            Width="80" Height="30" 
+                            Click="ExitButton_Click">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#f8d7da"/>
+                                <Setter Property="Foreground" Value="#721c24"/>
+                                <Setter Property="BorderBrush" Value="#f5c6cb"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="FontSize" Value="11"/>
+                                <Setter Property="FontWeight" Value="SemiBold"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}" 
+                                                    BorderBrush="{TemplateBinding BorderBrush}" 
+                                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                                    CornerRadius="4">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#f5c6cb"/>
+                                        <Setter Property="Cursor" Value="Hand"/>
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter Property="Background" Value="#f1b0b7"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </StackPanel>
             </Grid>
         </Border>
 
@@ -70,9 +108,7 @@
                 <DataGridTextColumn Header="Domeniu" Binding="{Binding Subject}" Width="1.5*"/>
                 <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="1*"/>
                 <DataGridTextColumn Header="Data rezervării" Binding="{Binding ReservationDate}" Width="1.5*"/>
-                <DataGridTextColumn Header="Data împrumutului"
-                    Binding="{Binding BorrowDate}"
-                    Width="1.5*"/>
+                <DataGridTextColumn Header="Data împrumutului" Binding="{Binding BorrowDate}" Width="1.5*"/>
             </DataGrid.Columns>
         </DataGrid>
 
