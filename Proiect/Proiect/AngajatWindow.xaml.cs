@@ -69,10 +69,32 @@ namespace Proiect
                 return;
             }
 
-            StudentLoansWindow studentLoansWindow = new StudentLoansWindow(selectedStudent.Username);
+            StudentLoansWindow studentLoansWindow =new StudentLoansWindow(selectedStudent.Username, currentUsername);
             studentLoansWindow.Show();
+            this.Close();
+
         }
 
+        private void SearchStudentTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            string searchText = SearchStudentTextBox.Text.Trim().ToLower();
+
+            if (string.IsNullOrWhiteSpace(searchText))
+            {
+                ShowOnlyStudents();
+                return;
+            }
+
+            var filteredStudents = users
+                .Where(u => u.Role != null &&
+                            u.Role.ToLower() == "student" &&
+                            u.Username.ToLower().Contains(searchText))
+                .Select(u => new StudentUser { Username = u.Username })
+                .ToList();
+
+            StudentsDataGrid.ItemsSource = null;
+            StudentsDataGrid.ItemsSource = filteredStudents;
+        }
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();

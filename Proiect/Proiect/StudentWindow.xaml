@@ -70,6 +70,9 @@
                 <DataGridTextColumn Header="Domeniu" Binding="{Binding Subject}" Width="1.5*"/>
                 <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="1*"/>
                 <DataGridTextColumn Header="Data rezervării" Binding="{Binding ReservationDate}" Width="1.5*"/>
+                <DataGridTextColumn Header="Data împrumutului"
+                    Binding="{Binding BorrowDate}"
+                    Width="1.5*"/>
             </DataGrid.Columns>
         </DataGrid>
 
