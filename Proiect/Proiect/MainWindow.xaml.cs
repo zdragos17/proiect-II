@@ -296,5 +296,10 @@ namespace Proiect
                 MessageBox.Show($"Rol necunoscut: {user.Role}");
             }
         }
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+           
+            Application.Current.Shutdown();
+        }
     }
 }

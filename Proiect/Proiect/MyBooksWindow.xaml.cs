@@ -37,5 +37,16 @@ namespace Proiect
         {
             LoadMyBooks();
         }
+        private void ReturnBookButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+            if (MyBooksDataGrid.SelectedItem == null)
+            {
+                MessageBox.Show("Te rog să selectezi o carte din listă pentru a o returna sau anula.", "Atenție", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            MessageBox.Show("Cererea a fost înregistrată! (Necesită integrare cu baza de date)", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     }
 }

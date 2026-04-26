@@ -24,7 +24,14 @@ namespace Proiect
         private void ShowOnlyStudents()
         {
             var students = users.Where(u => u.Role != null && u.Role.ToLower() == "student")
-                                .Select(u => new StudentUser { Username = u.Username })
+                                .Select(u => new StudentUser
+                                {
+                                    Username = u.Username,
+                                    LastName = u.LastName,       // Am adăugat maparea numelui
+                                    FirstName = u.FirstName,     // Am adăugat maparea prenumelui
+                                    Faculty = u.Faculty,         // Am adăugat maparea facultății
+                                    MatriculationNumber = u.MatriculationNumber // Am adăugat maparea numărului matricol
+                                })
                                 .ToList();
 
             StudentsDataGrid.ItemsSource = null;
@@ -37,7 +44,14 @@ namespace Proiect
             var filteredStudents = users.Where(u => u.Role != null &&
                                                     u.Role.ToLower() == "student" &&
                                                     u.Username.ToLower().Contains(searchText))
-                                        .Select(u => new StudentUser { Username = u.Username })
+                                        .Select(u => new StudentUser
+                                        {
+                                            Username = u.Username,
+                                            LastName = u.LastName,
+                                            FirstName = u.FirstName,
+                                            Faculty = u.Faculty,
+                                            MatriculationNumber = u.MatriculationNumber
+                                        })
                                         .ToList();
 
             StudentsDataGrid.ItemsSource = null;
@@ -69,10 +83,9 @@ namespace Proiect
                 return;
             }
 
-            StudentLoansWindow studentLoansWindow =new StudentLoansWindow(selectedStudent.Username, currentUsername);
+            StudentLoansWindow studentLoansWindow = new StudentLoansWindow(selectedStudent.Username, currentUsername);
             studentLoansWindow.Show();
             this.Close();
-
         }
 
         private void SearchStudentTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
@@ -89,17 +102,30 @@ namespace Proiect
                 .Where(u => u.Role != null &&
                             u.Role.ToLower() == "student" &&
                             u.Username.ToLower().Contains(searchText))
-                .Select(u => new StudentUser { Username = u.Username })
+                .Select(u => new StudentUser
+                {
+                    Username = u.Username,
+                    LastName = u.LastName,
+                    FirstName = u.FirstName,
+                    Faculty = u.Faculty,
+                    MatriculationNumber = u.MatriculationNumber
+                })
                 .ToList();
 
             StudentsDataGrid.ItemsSource = null;
             StudentsDataGrid.ItemsSource = filteredStudents;
         }
+
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             this.Close();
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

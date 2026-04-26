@@ -37,7 +37,40 @@
 
                         <Button Content="Înregistrare"
                                 Height="40"
+                                Margin="0,0,0,10"
                                 Click="ShowRegisterForm_Click"/>
+
+                        <Button Content="Ieșire aplicație" Height="40" Click="ExitButton_Click">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="#f8d7da"/>
+                                    <Setter Property="Foreground" Value="#721c24"/>
+                                    <Setter Property="BorderBrush" Value="#f5c6cb"/>
+                                    <Setter Property="BorderThickness" Value="1"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="5">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#f5c6cb"/>
+                                            <Setter Property="Cursor" Value="Hand"/>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter Property="Background" Value="#f1b0b7"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
                     </StackPanel>
 
                     <StackPanel x:Name="LoginPanel" Visibility="Collapsed">
@@ -48,32 +81,19 @@
                                    Margin="0,0,0,20"/>
 
                         <TextBlock Text="Rol" Margin="0,0,0,5"/>
-                        <ComboBox x:Name="LoginRoleComboBox"
-                                  Height="35"
-                                  Margin="0,0,0,12"
-                                  SelectedIndex="0">
+                        <ComboBox x:Name="LoginRoleComboBox" Height="35" Margin="0,0,0,12" SelectedIndex="0">
                             <ComboBoxItem Content="student"/>
                             <ComboBoxItem Content="angajat"/>
                         </ComboBox>
 
                         <TextBlock Text="Username" Margin="0,0,0,5"/>
-                        <TextBox x:Name="LoginUsernameTextBox"
-                                 Height="35"
-                                 Margin="0,0,0,12"/>
+                        <TextBox x:Name="LoginUsernameTextBox" Height="35" Margin="0,0,0,12"/>
 
                         <TextBlock Text="Parolă" Margin="0,0,0,5"/>
-                        <PasswordBox x:Name="LoginPasswordBox"
-                                     Height="35"
-                                     Margin="0,0,0,20"/>
+                        <PasswordBox x:Name="LoginPasswordBox" Height="35" Margin="0,0,0,20"/>
 
-                        <Button Content="Intră în cont"
-                                Height="40"
-                                Click="LoginButton_Click"/>
-
-                        <Button Content="Înapoi"
-                                Height="35"
-                                Margin="0,10,0,0"
-                                Click="BackToStart_Click"/>
+                        <Button Content="Intră în cont" Height="40" Click="LoginButton_Click"/>
+                        <Button Content="Înapoi" Height="35" Margin="0,10,0,0" Click="BackToStart_Click"/>
                     </StackPanel>
 
                     <StackPanel x:Name="RegisterPanel" Visibility="Collapsed">
@@ -84,85 +104,42 @@
                                    Margin="0,0,0,20"/>
 
                         <TextBlock Text="Rol" Margin="0,0,0,5"/>
-                        <ComboBox x:Name="RegisterRoleComboBox"
-                                  Height="35"
-                                  Margin="0,0,0,10"
-                                  SelectedIndex="0"
-                                  SelectionChanged="RegisterRoleComboBox_SelectionChanged">
+                        <ComboBox x:Name="RegisterRoleComboBox" Height="35" Margin="0,0,0,10" SelectedIndex="0" SelectionChanged="RegisterRoleComboBox_SelectionChanged">
                             <ComboBoxItem Content="student"/>
                             <ComboBoxItem Content="angajat"/>
                         </ComboBox>
 
                         <TextBlock Text="Nume" Margin="0,0,0,5"/>
-                        <TextBox x:Name="LastNameTextBox"
-                                 Height="35"
-                                 Margin="0,0,0,10"
-                                 TextChanged="RegisterNameFields_TextChanged"/>
+                        <TextBox x:Name="LastNameTextBox" Height="35" Margin="0,0,0,10"/>
 
                         <TextBlock Text="Prenume" Margin="0,0,0,5"/>
-                        <TextBox x:Name="FirstNameTextBox"
-                                 Height="35"
-                                 Margin="0,0,0,10"
-                                 TextChanged="RegisterNameFields_TextChanged"/>
+                        <TextBox x:Name="FirstNameTextBox" Height="35" Margin="0,0,0,10"/>
 
-                        <TextBlock x:Name="FacultyLabel"
-                                   Text="Facultate"
-                                   Margin="0,0,0,5"/>
-
-                        <ComboBox x:Name="FacultyComboBox"
-                                  Height="35"
-                                  Margin="0,0,0,10"
-                                  SelectedIndex="0">
+                        <TextBlock x:Name="FacultyLabel" Text="Facultate" Margin="0,0,0,5"/>
+                        <ComboBox x:Name="FacultyComboBox" Height="35" Margin="0,0,0,10" SelectedIndex="0">
                             <ComboBoxItem Content="Alege facultatea" IsEnabled="False"/>
                             <ComboBoxItem Content="AC"/>
                             <ComboBoxItem Content="ETTI"/>
                             <ComboBoxItem Content="Construcții"/>
                         </ComboBox>
 
-                        <TextBlock x:Name="MatriculationNumberLabel"
-                                   Text="Număr matricol"
-                                   Margin="0,0,0,5"/>
+                        <TextBlock x:Name="MatriculationNumberLabel" Text="Număr matricol" Margin="0,0,0,5"/>
+                        <TextBox x:Name="MatriculationNumberTextBox" Height="35" Margin="0,0,0,10"/>
 
-                        <TextBox x:Name="MatriculationNumberTextBox"
-                                 Height="35"
-                                 Margin="0,0,0,10"/>
+                        <TextBlock x:Name="EmployeeCodeLabel" Text="Cod angajat" Margin="0,0,0,5" Visibility="Collapsed"/>
+                        <PasswordBox x:Name="EmployeeCodePasswordBox" Height="35" Margin="0,0,0,10" Visibility="Collapsed"/>
 
-                        <TextBlock x:Name="EmployeeCodeLabel"
-                                   Text="Cod angajat"
-                                   Margin="0,0,0,5"
-                                   Visibility="Collapsed"/>
-
-                        <PasswordBox x:Name="EmployeeCodePasswordBox"
-                                     Height="35"
-                                     Margin="0,0,0,10"
-                                     Visibility="Collapsed"/>
-
-                        <TextBlock Text="Username generat automat" Margin="0,0,0,5"/>
-                        <TextBox x:Name="RegisterUsernameTextBox"
-                                 Height="35"
-                                 Margin="0,0,0,10"
-                                 IsReadOnly="True"
-                                 Background="#F1F3F5"
-                                 Text="Se va genera automat"/>
+                        <TextBlock Text="Alege Username" Margin="0,0,0,5" FontWeight="SemiBold"/>
+                        <TextBox x:Name="RegisterUsernameTextBox" Height="35" Margin="0,0,0,10"/>
 
                         <TextBlock Text="Parolă" Margin="0,0,0,5"/>
-                        <PasswordBox x:Name="RegisterPasswordBox"
-                                     Height="35"
-                                     Margin="0,0,0,10"/>
+                        <PasswordBox x:Name="RegisterPasswordBox" Height="35" Margin="0,0,0,10"/>
 
                         <TextBlock Text="Confirmă parola" Margin="0,0,0,5"/>
-                        <PasswordBox x:Name="ConfirmPasswordBox"
-                                     Height="35"
-                                     Margin="0,0,0,20"/>
+                        <PasswordBox x:Name="ConfirmPasswordBox" Height="35" Margin="0,0,0,20"/>
 
-                        <Button Content="Creează cont"
-                                Height="40"
-                                Click="RegisterButton_Click"/>
-
-                        <Button Content="Înapoi"
-                                Height="35"
-                                Margin="0,10,0,0"
-                                Click="BackToStart_Click"/>
+                        <Button Content="Creează cont" Height="40" Click="RegisterButton_Click"/>
+                        <Button Content="Înapoi" Height="35" Margin="0,10,0,0" Click="BackToStart_Click"/>
                     </StackPanel>
 
                 </StackPanel>

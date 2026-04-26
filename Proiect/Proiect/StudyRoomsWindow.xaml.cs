@@ -225,5 +225,10 @@ namespace Proiect
             studentWindow.Show();
             this.Close();
         }
+        private void ReleaseSeatButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+            MessageBox.Show("Locul tău a fost eliberat cu succes! ( integrare cu baza de date)", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     }
 }

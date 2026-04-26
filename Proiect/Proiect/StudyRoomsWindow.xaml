@@ -42,16 +42,26 @@
 
         <Grid Grid.Row="2" VerticalAlignment="Bottom" Margin="0,0,0,20">
             <Button Content="Înapoi la meniu"
-            Width="180"
-            Height="45"
-            HorizontalAlignment="Left"
-            Click="BackButton_Click"/>
+                    Width="180"
+                    Height="45"
+                    HorizontalAlignment="Left"
+                    Click="BackButton_Click"/>
 
-            <Button Content="Refresh"
-            Width="120"
-            Height="45"
-            HorizontalAlignment="Right"
-            Click="RefreshButton_Click"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Eliberează locul"
+                        Width="180"
+                        Height="45"
+                        Margin="0,0,10,0"
+                        Background="#A8192E"
+                        Foreground="White"
+                        FontWeight="SemiBold"
+                        Click="ReleaseSeatButton_Click"/>
+
+                <Button Content="Refresh"
+                        Width="120"
+                        Height="45"
+                        Click="RefreshButton_Click"/>
+            </StackPanel>
         </Grid>
 
     </Grid>
