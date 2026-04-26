@@ -20,14 +20,13 @@ namespace Proiect.Services
             using var db = new LibraryContext();
             foreach (var book in booksToSave)
             {
-                // Aceasta este linia salvatoare:
                 if (string.IsNullOrEmpty(book.Status)) book.Status = "Disponibil";
 
                 var existingBook = db.Books.FirstOrDefault(b => b.Title == book.Title);
                 if (existingBook == null) db.Books.Add(book);
                 else db.Entry(existingBook).CurrentValues.SetValues(book);
             }
-            db.SaveChanges(); // Eroarea nu mai apare aici pentru că Status are acum o valoare
+            db.SaveChanges();
         }
 
         // --- GESTIUNE IMPRUMUTURI (BORROWED BOOKS) ---
@@ -42,7 +41,6 @@ namespace Proiect.Services
             using var db = new LibraryContext();
             foreach (var borrowed in borrowedBooksToSave)
             {
-                // Verificăm dacă împrumutul există deja (folosind cheile compuse: Username și Title)
                 var existing = db.BorrowedBooks.FirstOrDefault(bb =>
                     bb.Username == borrowed.Username &&
                     bb.Title == borrowed.Title &&
@@ -50,12 +48,10 @@ namespace Proiect.Services
 
                 if (existing == null)
                 {
-                    // Dacă e nou, îl adăugăm
                     db.BorrowedBooks.Add(borrowed);
                 }
                 else
                 {
-                    // Dacă există deja, actualizăm restul valorilor (ex: ReturnDate)
                     db.Entry(existing).CurrentValues.SetValues(borrowed);
                 }
             }
@@ -66,7 +62,6 @@ namespace Proiect.Services
             }
             catch (Exception ex)
             {
-                // Afișăm eroarea exactă pentru a vedea ce coloană lipsește (ex: Status sau Date)
                 MessageBox.Show("Eroare la salvarea împrumutului: " + ex.InnerException?.Message ?? ex.Message);
             }
         }
@@ -84,17 +79,14 @@ namespace Proiect.Services
 
             foreach (var user in usersToSave)
             {
-                // Verificăm dacă userul există deja în baza de date după Username
                 var existingUser = db.Users.FirstOrDefault(u => u.Username == user.Username);
 
                 if (existingUser == null)
                 {
-                    // Dacă nu există deloc în DB, îl adăugăm ca nou
                     db.Users.Add(user);
                 }
                 else
                 {
-                    // Dacă există deja, actualizăm doar valorile (parola, rolul)
                     db.Entry(existingUser).CurrentValues.SetValues(user);
                 }
             }
@@ -120,7 +112,6 @@ namespace Proiect.Services
 
             if (!seats.Any())
             {
-                // Inițializare locuri dacă baza de date e goală
                 for (int i = 1; i <= 20; i++)
                 {
                     seats.Add(new StudySeat { SeatNumber = i, IsReserved = false, ReservedBy = "" });
