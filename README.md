@@ -9,8 +9,12 @@ repo proiect ii
 4. Dupa ce terminati, dati push pe ramura voastra si deschideti un pull-request pe github
    - Sa zicem ca s-a creat o ramura git checkout -b login-style:
      i. git add .
+
      ii. git commit -m "Mesaj"
+
      iii. git push origin login-style si asa nu se strica ramura main
+
      iv. Pentru a face pull-request intram pe github si ar trebui sa apara un mesaj cu galben si apasati pe "Compare & pull-request"
+
      v. Apasati Pull-request:
         - Aici o sa putem vedea exact ce linii de cod s-au schimbat, daca totul e inregula dati pe "Merge pull-request" si codul scris se baga pe ramura main
