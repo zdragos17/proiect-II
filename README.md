@@ -8,7 +8,8 @@ repo proiect ii
 3. Creati o ramura noua pentru fiecare task: git checkout -b nume-task
 4. Dupa ce terminati, dati push pe ramura voastra si deschideti un pull-request pe github
    - Sa zicem ca s-a creat o ramura git checkout -b login-style:
-     i. git add .
+
+      i. git add .
 
      ii. git commit -m "Mesaj"
 
