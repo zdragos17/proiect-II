@@ -127,5 +127,15 @@ namespace Proiect
         {
             Application.Current.Shutdown();
         }
+        private async void DownloadApiBooks_Click(object sender, RoutedEventArgs e)
+        {
+            await _libraryService.SeedDatabaseWithApiBooks();
+        }
+        private void AddBookManual_Click(object sender, RoutedEventArgs e)
+        {
+            AddBookWindow addWindow = new AddBookWindow();
+            addWindow.Owner = this;
+            addWindow.ShowDialog();
+        }
     }
 }
