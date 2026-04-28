@@ -101,7 +101,8 @@
                   CanUserAddRows="False"
                   IsReadOnly="True"
                   SelectionMode="Single"
-                  SelectionUnit="FullRow">
+                  SelectionUnit="FullRow"
+                  MouseDoubleClick="BooksDataGrid_MouseDoubleClick" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Titlu" Binding="{Binding Title}" Width="2.5*"/>
                 <DataGridTextColumn Header="Autor" Binding="{Binding Author}" Width="2*"/>

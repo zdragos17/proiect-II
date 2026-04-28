@@ -122,6 +122,17 @@
         </DataGrid>
 
         <Grid Grid.Row="3" Margin="25,10,25,25">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Button Content="Descarcă cărți (API)" 
+                        Width="160" 
+                        Click="DownloadApiBooks_Click"/>
+
+                <Button Content="Adaugă Carte Manual" 
+                        Width="160" 
+                        Margin="15,0,0,0"
+                        Click="AddBookManual_Click"/>
+            </StackPanel>
+
             <Button Content="Deschide fișa studentului" 
                     Width="260" 
                     HorizontalAlignment="Right"

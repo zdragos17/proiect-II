@@ -249,5 +249,17 @@ namespace Proiect
         {
             Application.Current.Shutdown();
         }
+
+        private void BooksDataGrid_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Book selectedBook = BooksDataGrid.SelectedItem as Book;
+
+            if (selectedBook != null)
+            {
+                BookDetailsWindow detailsPopup = new BookDetailsWindow(selectedBook);
+                detailsPopup.Owner = this;
+                detailsPopup.ShowDialog();
+            }
+        }
     }
 }
