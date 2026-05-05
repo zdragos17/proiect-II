@@ -4,7 +4,8 @@
         Title="Biblioteca UTCN - Administrare Angajat"
         Height="600"
         Width="850"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        KeyDown="Window_KeyDown">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -123,18 +124,21 @@
 
         <Grid Grid.Row="3" Margin="25,10,25,25">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                <Button Content="Descarcă cărți (API)" 
-                        Width="160" 
-                        Click="DownloadApiBooks_Click"/>
+
+                <!-- Butonul de API a fost scos de aici -->
 
                 <Button Content="Adaugă Carte Manual" 
-                        Width="160" 
-                        Margin="15,0,0,0"
+                        Width="150" 
                         Click="AddBookManual_Click"/>
+
+                <Button Content="Gestionează Cărți" 
+                        Width="150" 
+                        Margin="10,0,0,0"
+                        Click="ManageBooksButton_Click"/>
             </StackPanel>
 
             <Button Content="Deschide fișa studentului" 
-                    Width="260" 
+                    Width="240" 
                     HorizontalAlignment="Right"
                     Click="OpenStudentFileButton_Click"/>
         </Grid>

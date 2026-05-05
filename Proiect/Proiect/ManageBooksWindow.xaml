@@ -1,0 +1,42 @@
+﻿<Window x:Class="Proiect.ManageBooksWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Gestionare Cărți" Height="600" Width="850"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+
+        
+        <Border Grid.Row="0" Background="#A8192E">
+            <TextBlock Text="Gestiune Bază de Date Cărți" Foreground="White" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Border>
+
+        <DataGrid x:Name="AllBooksDataGrid"
+                  Grid.Row="1" Margin="25,25,25,10"
+                  AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True"
+                  SelectionMode="Single" SelectionUnit="FullRow"
+                  MouseDoubleClick="AllBooksDataGrid_MouseDoubleClick">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
+                <DataGridTextColumn Header="Titlu" Binding="{Binding Title}" Width="*"/>
+                <DataGridTextColumn Header="Autor" Binding="{Binding Author}" Width="*"/>
+                <DataGridTextColumn Header="Domeniu" Binding="{Binding Subject}" Width="120"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Grid.Row="2" Margin="25,10,25,20">
+            <Button Content="Înapoi" Width="100" HorizontalAlignment="Left" Background="#6C757D" Foreground="White" Click="BackButton_Click"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Editează Cartea" Width="130" Background="#A8192E" Foreground="White" Margin="0,0,15,0" Click="EditBookButton_Click"/>
+                <Button Content="Șterge Cartea" Width="130" Background="#DC3545" Foreground="White" Click="DeleteBookButton_Click"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
