@@ -61,7 +61,7 @@ namespace Proiect.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Books");
+                    b.ToTable("Books", (string)null);
                 });
 
             modelBuilder.Entity("Proiect.BorrowedBook", b =>
@@ -91,7 +91,7 @@ namespace Proiect.Migrations
 
                     b.HasKey("Username", "Title", "ReservationDate");
 
-                    b.ToTable("BorrowedBooks");
+                    b.ToTable("BorrowedBooks", (string)null);
                 });
 
             modelBuilder.Entity("Proiect.StudySeat", b =>
@@ -115,7 +115,7 @@ namespace Proiect.Migrations
 
                     b.HasKey("SeatNumber");
 
-                    b.ToTable("StudySeat");
+                    b.ToTable("StudySeat", (string)null);
                 });
 
             modelBuilder.Entity("Proiect.User", b =>
@@ -154,7 +154,7 @@ namespace Proiect.Migrations
 
                     b.HasKey("Username");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 #pragma warning restore 612, 618
         }
