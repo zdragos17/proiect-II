@@ -62,7 +62,7 @@ namespace Proiect.Data
 
             modelBuilder.Entity<StudySeat>()
                 .Property(s => s.SeatNumber)
-                .HasMaxLength(50);
+                .ValueGeneratedNever();
         }
     }
 }
