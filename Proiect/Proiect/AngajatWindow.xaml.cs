@@ -127,15 +127,27 @@ namespace Proiect
         {
             Application.Current.Shutdown();
         }
-        private async void DownloadApiBooks_Click(object sender, RoutedEventArgs e)
+        // Tasta secreta pentru prezentare: F12 descarca datele de la API
+        private async void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            await _libraryService.SeedDatabaseWithApiBooks();
+            if (e.Key == Key.F12)
+            {
+                MessageBoxResult result = MessageBox.Show("Se descarcă date de la API. Te rog așteaptă", "Functie Prezentare", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                await _libraryService.SeedDatabaseWithApiBooks();
+            }
         }
         private void AddBookManual_Click(object sender, RoutedEventArgs e)
         {
             AddBookWindow addWindow = new AddBookWindow();
             addWindow.Owner = this;
             addWindow.ShowDialog();
+        }
+        private void ManageBooksButton_Click(object sender, RoutedEventArgs e)
+        {
+            ManageBooksWindow manageWindow = new ManageBooksWindow(currentUsername);
+            manageWindow.Show();
+            this.Close(); 
         }
     }
 }

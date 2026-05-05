@@ -227,8 +227,42 @@ namespace Proiect
         }
         private void ReleaseSeatButton_Click(object sender, RoutedEventArgs e)
         {
-            
-            MessageBox.Show("Locul tău a fost eliberat cu succes! ( integrare cu baza de date)", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
+            // Căutăm locul rezervat de studentul conectat în acest moment
+            StudySeat mySeat = _seats.FirstOrDefault(s => s.IsReserved && s.ReservedBy == _currentUsername);
+
+            if (mySeat == null)
+            {
+                MessageBox.Show("Nu ai niciun loc rezervat în acest moment pe care să îl poți elibera.", "Atenție", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            // Confirmare opțională, dar utilă
+            MessageBoxResult result = MessageBox.Show(
+                $"Ești sigur că vrei să eliberezi locul {mySeat.SeatNumber}?",
+                "Confirmare eliberare",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                mySeat.IsReserved = false;
+                mySeat.ReservedBy = ""; 
+                mySeat.ReservationDate = null;
+
+                try
+                {
+                    _libraryService.SaveSeats(_seats);
+
+                    LoadSeats();
+
+                    MessageBox.Show($"Locul {mySeat.SeatNumber} a fost eliberat cu succes!", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    string innerError = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
+                    MessageBox.Show($"Eroare la eliberarea locului: {innerError}", "Eroare DB", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
     }
 }
