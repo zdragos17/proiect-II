@@ -119,5 +119,34 @@
                     HorizontalAlignment="Right"
                     Click="ReserveButton_Click"/>
         </Grid>
+        <Button Grid.RowSpan="10" 
+                Width="60" Height="60" 
+                HorizontalAlignment="Left" VerticalAlignment="Bottom" 
+                Margin="30,0,0,40"
+                Background="#A8192E" Foreground="White"
+                BorderThickness="0"
+                Click="AIAsistentButton_Click"
+                ToolTip="Vorbește cu Asistentul Bibliotecii">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="30">
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="🤖" FontSize="26" HorizontalAlignment="Center" Margin="0,0,0,-5"/>
+                            <TextBlock Text="AI" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#821323"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
     </Grid>
 </Window>

@@ -132,9 +132,16 @@ namespace Proiect
         {
             if (e.Key == Key.F12)
             {
-                MessageBoxResult result = MessageBox.Show("Se descarcă date de la API. Te rog așteaptă", "Functie Prezentare", MessageBoxButton.OK, MessageBoxImage.Information);
+                System.Windows.Input.Mouse.OverrideCursor = System.Windows.Input.Cursors.Wait;
 
-                await _libraryService.SeedDatabaseWithApiBooks();
+                try
+                {
+                    await _libraryService.SeedDatabaseWithApiBooks();
+                }
+                finally
+                {
+                    System.Windows.Input.Mouse.OverrideCursor = null;
+                }
             }
         }
         private void AddBookManual_Click(object sender, RoutedEventArgs e)

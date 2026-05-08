@@ -97,103 +97,100 @@ namespace Proiect.Services
             }
         }
 
-   public async Task SeedDatabaseWithApiBooks()
+        public async Task SeedDatabaseWithApiBooks()
         {
             try
             {
                 using (var db = new LibraryContext())
                 {
-                    
                     var existingTitles = db.Books.Select(b => b.Title.ToLower()).ToList();
 
                     using (HttpClient client = new HttpClient())
                     {
-                        // 2. Generăm o pagină aleatorie între 1 și 50 pentru a aduce mereu alte cărți
-                        Random rnd = new Random();
-                        int randomPage = rnd.Next(1, 50);
+                        // 1. Definim categoriile pentru API și traducerea lor curată pentru baza ta de date
+                        var domenii = new System.Collections.Generic.Dictionary<string, string>
+                {
+                    { "programming", "Informatică" },
+                    { "science", "Știință" },
+                    { "history", "Istorie" },
+                    { "art", "Artă" },
+                    { "fiction", "Ficțiune" },
+                    { "fantasy", "Fantezie" },
+                    { "mystery", "Mister" },
+                    { "philosophy", "Filosofie" }
+                };
 
-                        // Adăugăm &page=... la finalul link-ului
-                        string url = $"https://openlibrary.org/search.json?q=programming+fiction+science+history+art&limit=100&page={randomPage}";
+                        Random rnd = new Random();
+                        var keys = System.Linq.Enumerable.ToList(domenii.Keys);
+
+                        // Alegem un cuvânt cheie random pentru API
+                        string searchKeyword = keys[rnd.Next(keys.Count)];
+                        // Luăm traducerea frumoasă pentru a o pune în baza de date
+                        string domeniuCurat = domenii[searchKeyword];
+
+                        int randomPage = rnd.Next(1, 4);
+
+                        string url = $"https://openlibrary.org/search.json?q={searchKeyword}&limit=100&page={randomPage}";
                         HttpResponseMessage response = await client.GetAsync(url);
 
                         if (response.IsSuccessStatusCode)
                         {
                             string jsonString = await response.Content.ReadAsStringAsync();
 
-                            using (JsonDocument doc = JsonDocument.Parse(jsonString))
+                            using (System.Text.Json.JsonDocument doc = System.Text.Json.JsonDocument.Parse(jsonString))
                             {
                                 var docs = doc.RootElement.GetProperty("docs");
                                 int addedCount = 0;
 
                                 foreach (var item in docs.EnumerateArray())
                                 {
-                                    // Dacă am adăugat deja 40 de cărți NOI, ne oprim forțat
                                     if (addedCount >= 40) break;
 
                                     if (!item.TryGetProperty("title", out var titleElement)) continue;
                                     string title = titleElement.GetString();
 
-                                    // 3. FILTRUL ANTI-DUPLICATE: Dacă titlul există deja în baza de date, sărim la următoarea carte
                                     if (existingTitles.Contains(title.ToLower())) continue;
 
-                                    // Extragem autorul
                                     string author = "Autor Necunoscut";
                                     if (item.TryGetProperty("author_name", out var authorElement) && authorElement.GetArrayLength() > 0)
                                     {
                                         author = authorElement[0].GetString();
                                     }
 
-                                    // Extragem domeniul
-                                    string subject = "General";
-                                    if (item.TryGetProperty("subject", out var subjectElement) && subjectElement.GetArrayLength() > 0)
-                                    {
-                                        subject = subjectElement[0].GetString();
-                                        // Limităm la 50 de caractere în caz că API-ul returnează o descriere prea lungă
-                                        if (subject.Length > 50) subject = subject.Substring(0, 50); 
-                                    }
-
-                                    // 4. Construim cartea
+                                    // 2. FORȚĂM domeniul tradus perfect, ignorând ce zice API-ul
                                     Book newBook = new Book
                                     {
                                         Title = title,
                                         Author = author,
-                                        Subject = subject,
+                                        Subject = domeniuCurat, // Aici punem "Ficțiune", "Istorie", etc.
                                         Status = "Disponibil",
-                                        ReservedBy = "" // String gol pentru a respecta regula bazei de date
+                                        ReservedBy = ""
                                     };
 
                                     db.Books.Add(newBook);
-                                    
-                                    // O adăugăm și în lista locală ca să nu adăugăm duplicate dacă API-ul are aceeași carte de 2 ori
-                                    existingTitles.Add(title.ToLower()); 
+                                    existingTitles.Add(title.ToLower());
                                     addedCount++;
                                 }
 
                                 if (addedCount > 0)
                                 {
-                                    await db.SaveChangesAsync(); // Acum le trimitem pe toate 40 în Azure
-                                    MessageBox.Show($"Au fost descărcate și adăugate {addedCount} cărți noi cu succes!", "Succes API", MessageBoxButton.OK, MessageBoxImage.Information);
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Toate cărțile aduse de API există deja în baza de date. Nu s-au adăugat duplicate.", "Info API", MessageBoxButton.OK, MessageBoxImage.Information);
+                                    await db.SaveChangesAsync();
+                                    System.Windows.MessageBox.Show($"S-au adăugat {addedCount} cărți noi din domeniul '{domeniuCurat}'!", "Succes API", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
                                 }
                             }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Eroare la conectarea cu serverele Open Library.", "Eroare", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                     }
                 }
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 string innerError = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
-                MessageBox.Show($"Eroare la descărcarea cărților: {innerError}", "Eroare API", MessageBoxButton.OK, MessageBoxImage.Error);
+                System.Windows.MessageBox.Show($"Eroare: {innerError}", "Eroare API", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
             }
+
+           
+
         }
-    
 
 
         public List<BorrowedBook> GetBorrowedBooks()

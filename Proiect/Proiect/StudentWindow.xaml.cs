@@ -261,5 +261,11 @@ namespace Proiect
                 detailsPopup.ShowDialog();
             }
         }
+        private void AIAsistentButton_Click(object sender, RoutedEventArgs e)
+        {
+            AssistantChatWindow chatWindow = new AssistantChatWindow(currentUsername);
+            chatWindow.Owner = this;
+            chatWindow.ShowDialog();
+        }
     }
 }
