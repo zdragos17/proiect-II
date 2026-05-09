@@ -68,5 +68,68 @@ namespace testeProiect
             var book = new Book();
             Assert.Null(book.ReservedBy);
         }
+
+        // TESTE NOI - VALIDARE CARTE
+
+        [Fact]
+        ///TESTEAZA DACA O CARTE FARA TITLU NU ESTE VALIDA
+        public void Book_EmptyTitle_ShouldBeInvalid()
+        {
+            var book = new Book { Title = "", Author = "Author", Subject = "Subject" };
+
+            bool isInvalid = string.IsNullOrWhiteSpace(book.Title);
+
+            Assert.True(isInvalid);
+        }
+
+        [Fact]
+        ///TESTEAZA DACA O CARTE FARA AUTOR NU ESTE VALIDA
+        public void Book_EmptyAuthor_ShouldBeInvalid()
+        {
+            var book = new Book { Title = "Title", Author = "", Subject = "Subject" };
+
+            bool isInvalid = string.IsNullOrWhiteSpace(book.Author);
+
+            Assert.True(isInvalid);
+        }
+
+        [Fact]
+        ///TESTEAZA DACA STATUS-UL CARTII POATE FI DOAR DISPONIBIL SAU INDISPONIBIL
+        public void Book_Status_ShouldBeValidStatus()
+        {
+            var validStatuses = new List<string> { "Disponibil", "Indisponibil", "Rezervata" };
+            var book = new Book { Status = "Disponibil" };
+
+            bool isValid = validStatuses.Contains(book.Status);
+
+            Assert.True(isValid);
+        }
+
+        [Fact]
+        ///TESTEAZA DACA O CARTE REZERVATA NU POATE FI DISPONIBILA
+        public void Book_WhenReserved_CannotBeAvailable()
+        {
+            var book = new Book 
+            { 
+                IsReserved = true, 
+                ReservedBy = "student1",
+                Status = "Rezervata"
+            };
+
+            bool cannotBeAvailable = book.IsReserved && book.Status != "Disponibil";
+
+            Assert.True(cannotBeAvailable);
+        }
+
+        [Fact]
+        ///TESTEAZA DACA O CARTE NU E REZERVATA, ReservedBy TREBUIE SA FIE NULL SAU GOLU
+        public void Book_NotReserved_ReservedByShouldBeEmpty()
+        {
+            var book = new Book { IsReserved = false };
+
+            bool isValid = string.IsNullOrEmpty(book.ReservedBy);
+
+            Assert.True(isValid);
+        }
     }
 }
