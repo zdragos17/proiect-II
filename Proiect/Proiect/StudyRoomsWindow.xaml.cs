@@ -66,13 +66,9 @@ namespace Proiect
                     TimeSpan remaining = freeAt - DateTime.Now;
 
                     if (remaining.TotalMinutes > 0)
-                    {
                         tooltip = $"Loc ocupat. Liber în {FormatRemainingTime(remaining)}. Disponibil de la {freeAt:HH:mm}.";
-                    }
                     else
-                    {
                         tooltip = "Rezervarea a expirat. Apasă Refresh pentru actualizare.";
-                    }
                 }
                 else if (s.IsReserved)
                 {
@@ -93,7 +89,17 @@ namespace Proiect
                 };
             }).ToList();
 
-            SeatsItemsControl.ItemsSource = displaySeats;
+            var tables = displaySeats
+                .Select((seat, index) => new { seat, index })
+                .GroupBy(x => x.index / 4)
+                .Select(g => new
+                {
+                    TableName = $"Masa {g.Key + 1}",
+                    Seats = g.Select(x => x.seat).ToList()
+                })
+                .ToList();
+
+            TablesItemsControl.ItemsSource = tables;
         }
 
         private void SeatButton_Click(object sender, RoutedEventArgs e)
@@ -263,6 +269,24 @@ namespace Proiect
                     MessageBox.Show($"Eroare la eliberarea locului: {innerError}", "Eroare DB", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+        }
+        private void MyBooksButton_Click(object sender, RoutedEventArgs e)
+        {
+            MyBooksWindow myBooksWindow = new MyBooksWindow(_currentUsername);
+            myBooksWindow.Show();
+            this.Close();
+        }
+
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

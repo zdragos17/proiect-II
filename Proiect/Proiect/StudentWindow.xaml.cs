@@ -101,6 +101,7 @@ namespace Proiect
             if (borrowedChanged) _libraryService.SaveBorrowedBooks(borrowedBooks);
         }
 
+
         private void RefreshBooksGrid()
         {
             books = _libraryService.GetAllBooks();
@@ -267,5 +268,7 @@ namespace Proiect
             chatWindow.Owner = this;
             chatWindow.ShowDialog();
         }
+
+
     }
 }
