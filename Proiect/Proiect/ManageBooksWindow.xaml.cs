@@ -102,7 +102,7 @@ namespace Proiect
         {
             if (_allBooks == null) return;
 
-            string searchText = SearchTextBox.Text.ToLower();
+            string searchText = SearchTextBox.Text.Trim().ToLower();
 
             if (string.IsNullOrWhiteSpace(searchText))
             {
@@ -112,7 +112,8 @@ namespace Proiect
             {
                 var filteredList = _allBooks.Where(b =>
                     (b.Title != null && b.Title.ToLower().Contains(searchText)) ||
-                    (b.Author != null && b.Author.ToLower().Contains(searchText))
+                    (b.Author != null && b.Author.ToLower().Contains(searchText)) ||
+                    (b.Subject != null && b.Subject.ToLower().Contains(searchText))
                 ).ToList();
 
                 AllBooksDataGrid.ItemsSource = filteredList;

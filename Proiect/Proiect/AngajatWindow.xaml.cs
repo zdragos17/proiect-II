@@ -27,10 +27,10 @@ namespace Proiect
                                 .Select(u => new StudentUser
                                 {
                                     Username = u.Username,
-                                    LastName = u.LastName,       // Am adăugat maparea numelui
-                                    FirstName = u.FirstName,     // Am adăugat maparea prenumelui
-                                    Faculty = u.Faculty,         // Am adăugat maparea facultății
-                                    MatriculationNumber = u.MatriculationNumber // Am adăugat maparea numărului matricol
+                                    LastName = u.LastName,
+                                    FirstName = u.FirstName,
+                                    Faculty = u.Faculty,
+                                    MatriculationNumber = u.MatriculationNumber
                                 })
                                 .ToList();
 
@@ -41,18 +41,25 @@ namespace Proiect
         private void SearchStudentButton_Click(object sender, RoutedEventArgs e)
         {
             string searchText = SearchStudentTextBox.Text.Trim().ToLower();
-            var filteredStudents = users.Where(u => u.Role != null &&
-                                                    u.Role.ToLower() == "student" &&
-                                                    u.Username.ToLower().Contains(searchText))
-                                        .Select(u => new StudentUser
-                                        {
-                                            Username = u.Username,
-                                            LastName = u.LastName,
-                                            FirstName = u.FirstName,
-                                            Faculty = u.Faculty,
-                                            MatriculationNumber = u.MatriculationNumber
-                                        })
-                                        .ToList();
+
+            // CĂUTAREA MODIFICATĂ
+            var filteredStudents = users.Where(u => u.Role != null && u.Role.ToLower() == "student" &&
+                (
+                    (u.Username != null && u.Username.ToLower().Contains(searchText)) ||
+                    (u.LastName != null && u.LastName.ToLower().Contains(searchText)) ||
+                    (u.FirstName != null && u.FirstName.ToLower().Contains(searchText)) ||
+                    (u.Faculty != null && u.Faculty.ToLower().Contains(searchText)) ||
+                    (u.MatriculationNumber != null && u.MatriculationNumber.ToLower().Contains(searchText))
+                ))
+                .Select(u => new StudentUser
+                {
+                    Username = u.Username,
+                    LastName = u.LastName,
+                    FirstName = u.FirstName,
+                    Faculty = u.Faculty,
+                    MatriculationNumber = u.MatriculationNumber
+                })
+                .ToList();
 
             StudentsDataGrid.ItemsSource = null;
             StudentsDataGrid.ItemsSource = filteredStudents;
@@ -98,10 +105,15 @@ namespace Proiect
                 return;
             }
 
-            var filteredStudents = users
-                .Where(u => u.Role != null &&
-                            u.Role.ToLower() == "student" &&
-                            u.Username.ToLower().Contains(searchText))
+            // CĂUTAREA MODIFICATĂ ȘI AICI
+            var filteredStudents = users.Where(u => u.Role != null && u.Role.ToLower() == "student" &&
+                (
+                    (u.Username != null && u.Username.ToLower().Contains(searchText)) ||
+                    (u.LastName != null && u.LastName.ToLower().Contains(searchText)) ||
+                    (u.FirstName != null && u.FirstName.ToLower().Contains(searchText)) ||
+                    (u.Faculty != null && u.Faculty.ToLower().Contains(searchText)) ||
+                    (u.MatriculationNumber != null && u.MatriculationNumber.ToLower().Contains(searchText))
+                ))
                 .Select(u => new StudentUser
                 {
                     Username = u.Username,
@@ -127,6 +139,7 @@ namespace Proiect
         {
             Application.Current.Shutdown();
         }
+
         // Tasta secreta pentru prezentare: F12 descarca datele de la API
         private async void Window_KeyDown(object sender, KeyEventArgs e)
         {
@@ -144,17 +157,19 @@ namespace Proiect
                 }
             }
         }
+
         private void AddBookManual_Click(object sender, RoutedEventArgs e)
         {
             AddBookWindow addWindow = new AddBookWindow();
             addWindow.Owner = this;
             addWindow.ShowDialog();
         }
+
         private void ManageBooksButton_Click(object sender, RoutedEventArgs e)
         {
             ManageBooksWindow manageWindow = new ManageBooksWindow(currentUsername);
             manageWindow.Show();
-            this.Close(); 
+            this.Close();
         }
     }
 }
