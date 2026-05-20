@@ -1,8 +1,14 @@
 ﻿<Window x:Class="Proiect.ManageBooksWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Gestionare Cărți" Height="600" Width="850"
-        WindowStartupLocation="CenterScreen">
+        Title="Gestionare Cărți"
+        Height="760"
+        Width="1100"
+        WindowState="Maximized"
+        MinHeight="720"
+        MinWidth="1000"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanResize">
 
     <Grid>
         <Grid.RowDefinitions>

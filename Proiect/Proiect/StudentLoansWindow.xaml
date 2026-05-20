@@ -6,9 +6,13 @@
         xmlns:local="clr-namespace:Proiect"
         mc:Ignorable="d"
         Title="Fișa studentului"
-        Height="500"
-        Width="950"
-        WindowStartupLocation="CenterScreen">
+        Height="760"
+        Width="1100"
+        WindowState="Maximized"
+        MinHeight="720"
+        MinWidth="1000"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanResize">
 
     <Grid Background="#F5F7FA" Margin="20">
         <Grid.RowDefinitions>

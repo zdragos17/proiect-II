@@ -2,8 +2,9 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Biblioteca UTCN - Sistem Studenți"
-        Height="650"
-        Width="1050"
+        Height="760"
+        Width="1100"
+        WindowState="Maximized"
         WindowStartupLocation="CenterScreen"
         Background="#F5F7FA">
 
