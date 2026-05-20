@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Globalization;
+using System.Windows.Media.Animation;
 
 namespace Proiect
 {
@@ -100,6 +101,7 @@ namespace Proiect
             if (booksChanged) _libraryService.SaveBooks(books);
             if (borrowedChanged) _libraryService.SaveBorrowedBooks(borrowedBooks);
         }
+
 
         private void RefreshBooksGrid()
         {
@@ -236,8 +238,7 @@ namespace Proiect
         private void MyBooksButton_Click(object sender, RoutedEventArgs e)
         {
             MyBooksWindow myBooksWindow = new MyBooksWindow(currentUsername);
-            myBooksWindow.Show();
-            this.Close();
+            NavigateWithFade(myBooksWindow);
         }
         private void StudyRoomsButton_Click(object sender, RoutedEventArgs e)
         {
@@ -267,5 +268,36 @@ namespace Proiect
             chatWindow.Owner = this;
             chatWindow.ShowDialog();
         }
+
+        private void NavigateWithFade(Window nextWindow)
+        {
+            DoubleAnimation fadeOut = new DoubleAnimation
+            {
+                From = 1,
+                To = 0.92,
+                Duration = TimeSpan.FromMilliseconds(120)
+            };
+
+            fadeOut.Completed += (s, e) =>
+            {
+                nextWindow.WindowState = WindowState.Maximized;
+                nextWindow.Opacity = 0.92;
+                nextWindow.Show();
+
+                DoubleAnimation fadeIn = new DoubleAnimation
+                {
+                    From = 0.92,
+                    To = 1,
+                    Duration = TimeSpan.FromMilliseconds(160)
+                };
+
+                nextWindow.BeginAnimation(Window.OpacityProperty, fadeIn);
+                this.Close();
+            };
+
+            this.BeginAnimation(Window.OpacityProperty, fadeOut);
+        }
+
+
     }
 }

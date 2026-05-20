@@ -13,11 +13,13 @@ namespace Proiect
 
         private bool IsValidEmployeeCode(string code)
         {
+
             return System.Text.RegularExpressions.Regex.IsMatch(
                 code,
                 @"^UTCN-ANG-\d{3}$"
             );
         }
+
 
         public MainWindow()
         {
