@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 
 namespace Proiect
 {
@@ -228,8 +229,7 @@ namespace Proiect
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             StudentWindow studentWindow = new StudentWindow(_currentUsername);
-            studentWindow.Show();
-            this.Close();
+            WindowNavigationHelper.NavigateWithFade(this, studentWindow);
         }
         private void ReleaseSeatButton_Click(object sender, RoutedEventArgs e)
         {
@@ -273,20 +273,21 @@ namespace Proiect
         private void MyBooksButton_Click(object sender, RoutedEventArgs e)
         {
             MyBooksWindow myBooksWindow = new MyBooksWindow(_currentUsername);
-            myBooksWindow.Show();
-            this.Close();
+            WindowNavigationHelper.NavigateWithFade(this, myBooksWindow);
         }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            this.Close();
+            WindowNavigationHelper.NavigateWithFade(this, mainWindow);
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
+
+
+        
     }
 }

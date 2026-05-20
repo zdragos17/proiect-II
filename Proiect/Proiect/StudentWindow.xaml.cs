@@ -181,8 +181,7 @@ namespace Proiect
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            this.Close();
+            WindowNavigationHelper.NavigateWithFade(this, mainWindow);
         }
 
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
@@ -238,13 +237,12 @@ namespace Proiect
         private void MyBooksButton_Click(object sender, RoutedEventArgs e)
         {
             MyBooksWindow myBooksWindow = new MyBooksWindow(currentUsername);
-            NavigateWithFade(myBooksWindow);
+            WindowNavigationHelper.NavigateWithFade(this, myBooksWindow);
         }
         private void StudyRoomsButton_Click(object sender, RoutedEventArgs e)
         {
             StudyRoomsWindow studyRoomsWindow = new StudyRoomsWindow(currentUsername);
-            studyRoomsWindow.Show();
-            this.Close();
+            WindowNavigationHelper.NavigateWithFade(this, studyRoomsWindow);
         }
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
@@ -269,35 +267,7 @@ namespace Proiect
             chatWindow.ShowDialog();
         }
 
-        private void NavigateWithFade(Window nextWindow)
-        {
-            DoubleAnimation fadeOut = new DoubleAnimation
-            {
-                From = 1,
-                To = 0.92,
-                Duration = TimeSpan.FromMilliseconds(120)
-            };
-
-            fadeOut.Completed += (s, e) =>
-            {
-                nextWindow.WindowState = WindowState.Maximized;
-                nextWindow.Opacity = 0.92;
-                nextWindow.Show();
-
-                DoubleAnimation fadeIn = new DoubleAnimation
-                {
-                    From = 0.92,
-                    To = 1,
-                    Duration = TimeSpan.FromMilliseconds(160)
-                };
-
-                nextWindow.BeginAnimation(Window.OpacityProperty, fadeIn);
-                this.Close();
-            };
-
-            this.BeginAnimation(Window.OpacityProperty, fadeOut);
-        }
-
+     
 
     }
 }

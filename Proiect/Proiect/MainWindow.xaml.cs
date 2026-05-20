@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Animation;
 
 namespace Proiect
 {
@@ -285,14 +286,12 @@ namespace Proiect
             if (role == "student")
             {
                 StudentWindow studentWindow = new StudentWindow(user.Username);
-                studentWindow.Show();
-                this.Close();
+                WindowNavigationHelper.NavigateWithFade(this, studentWindow);
             }
             else if (role == "angajat")
             {
                 AngajatWindow angajatWindow = new AngajatWindow(user.Username);
-                angajatWindow.Show();
-                this.Close();
+                WindowNavigationHelper.NavigateWithFade(this, angajatWindow);
             }
             else
             {
@@ -304,5 +303,8 @@ namespace Proiect
            
             Application.Current.Shutdown();
         }
+
+        
+
     }
 }

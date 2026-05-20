@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Media.Animation;
 
 namespace Proiect
 {
@@ -30,8 +31,7 @@ namespace Proiect
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             StudentWindow studentWindow = new StudentWindow(currentUsername);
-            studentWindow.Show();
-            this.Close();
+            WindowNavigationHelper.NavigateWithFade(this, studentWindow);
         }
 
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
@@ -94,5 +94,7 @@ namespace Proiect
                 }
             }
         }
+
+
     }
 }

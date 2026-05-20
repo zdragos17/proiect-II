@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Animation;
 
 namespace Proiect
 {
@@ -86,8 +87,7 @@ namespace Proiect
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             AngajatWindow angajatWindow = new AngajatWindow(_currentUsername);
-            angajatWindow.Show();
-            this.Close();
+            WindowNavigationHelper.NavigateWithFade(this, angajatWindow);
         }
 
         private void AllBooksDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -129,5 +129,7 @@ namespace Proiect
                 AllBooksDataGrid.ItemsSource = filteredList;
             }
         }
+
+       
     }
 }
