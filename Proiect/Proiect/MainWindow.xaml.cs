@@ -11,12 +11,13 @@ namespace Proiect
     {
         private readonly Services.LibraryService _libraryService = new Services.LibraryService();
 
-        private readonly List<string> validEmployeeCodes = new List<string>
+        private bool IsValidEmployeeCode(string code)
         {
-            "UTCN-ANG-001",
-            "UTCN-ANG-002",
-            "UTCN-ANG-003"
-        };
+            return System.Text.RegularExpressions.Regex.IsMatch(
+                code,
+                @"^UTCN-ANG-\d{3}$"
+            );
+        }
 
         public MainWindow()
         {
@@ -199,9 +200,9 @@ namespace Proiect
                     return;
                 }
 
-                if (!validEmployeeCodes.Contains(employeeCode))
+                if (!IsValidEmployeeCode(employeeCode))
                 {
-                    MessageBox.Show("Codul de angajat nu este valid.");
+                    MessageBox.Show("Cod angajat invalid. Format corect: UTCN-ANG-001");
                     return;
                 }
             }
