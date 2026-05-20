@@ -25,10 +25,15 @@ namespace Proiect
         {
             using (var db = new LibraryContext())
             {
-                // 2. Acum salvăm cărțile în lista noastră prima dată
-                _allBooks = db.Books.ToList();
+                _allBooks = db.Books
+                    .OrderBy(b => b.Id)
+                    .ToList();
 
-                // Apoi le afișăm pe ecran
+                for (int i = 0; i < _allBooks.Count; i++)
+                {
+                    _allBooks[i].DisplayId = i + 1;
+                }
+
                 AllBooksDataGrid.ItemsSource = _allBooks;
             }
         }
@@ -115,6 +120,11 @@ namespace Proiect
                     (b.Author != null && b.Author.ToLower().Contains(searchText)) ||
                     (b.Subject != null && b.Subject.ToLower().Contains(searchText))
                 ).ToList();
+
+                for (int i = 0; i < filteredList.Count; i++)
+                {
+                    filteredList[i].DisplayId = i + 1;
+                }
 
                 AllBooksDataGrid.ItemsSource = filteredList;
             }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Proiect
 {
@@ -7,6 +8,9 @@ namespace Proiect
     {
         [Key]
         public int Id { get; set; }
+
+        [NotMapped]
+        public int DisplayId { get; set; } //pt ui display
 
         public string Title { get; set; }
         public string Author { get; set; }

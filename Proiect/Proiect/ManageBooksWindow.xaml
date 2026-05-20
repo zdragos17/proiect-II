@@ -39,7 +39,7 @@
                   SelectionMode="Single" SelectionUnit="FullRow"
                   MouseDoubleClick="AllBooksDataGrid_MouseDoubleClick">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
+                <DataGridTextColumn Header="ID" Binding="{Binding DisplayId}"/>
                 <DataGridTextColumn Header="Titlu" Binding="{Binding Title}" Width="*"/>
                 <DataGridTextColumn Header="Autor" Binding="{Binding Author}" Width="*"/>
                 <DataGridTextColumn Header="Domeniu" Binding="{Binding Subject}" Width="120"/>
