@@ -43,7 +43,7 @@ namespace testeProiect
             Assert.Equal("Angajat", user.Role);
         }
 
-        // --- LOGICA BUSINESS USER (Noi) ---
+        // TESTE NOI - VALIDARE PARAMETRI SECURITATE
 
         [Fact]
         ///TESTEAZA DACA PAROLA TREBUIE SA AIBA LUNGIME MINIMA
